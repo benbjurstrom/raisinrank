@@ -11,7 +11,7 @@ import Page from '../components/Page'
 import SaleCard from '../components/SaleCard'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
-import { updateSales, deleteSales } from '../utils/updateSales'
+import { deleteSales, updateSales } from '../utils/updateSales'
 // hooks
 
 // ----------------------------------------------------------------------

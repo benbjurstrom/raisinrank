@@ -1,5 +1,5 @@
 // material
-import { Box, Typography, BoxProps } from '@mui/material'
+import { Box, BoxProps, Typography } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 
 // ----------------------------------------------------------------------

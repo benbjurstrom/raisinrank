@@ -1,7 +1,7 @@
 // material
 import { useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { ReactNode, createContext, useState, useEffect } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
-import { Dialog, Box, Paper, DialogProps } from '@mui/material'
-import { motion, AnimatePresence } from 'framer-motion'
+import { Box, Dialog, DialogProps, Paper } from '@mui/material'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // material
 //

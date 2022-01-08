@@ -11,7 +11,7 @@ import Page from '../components/Page'
 import TitleCard from '../components/TitleCard'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
-import { updateTitles, deleteTitles } from '../utils/updateTitles'
+import { deleteTitles, updateTitles } from '../utils/updateTitles'
 // hooks
 
 // ----------------------------------------------------------------------

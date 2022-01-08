@@ -1,10 +1,10 @@
-import { Button, Box, Container, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
-// material
 
+// material
 //
-import { varFadeInDown, varFadeInUp, MotionInView } from '../../animate'
+import { MotionInView, varFadeInDown, varFadeInUp } from '../../animate'
 
 // ----------------------------------------------------------------------
 

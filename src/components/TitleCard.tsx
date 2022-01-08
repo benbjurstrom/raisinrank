@@ -3,7 +3,6 @@ import { Box, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { Title } from '../db'
-
 import ColorPreview from './ColorPreview'
 import Label from './Label'
 

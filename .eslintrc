@@ -1,7 +1,8 @@
 {
   "plugins": [
-    "prettier",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "simple-import-sort",
+    "prettier"
   ],
   "extends": [
     "airbnb-typescript",
@@ -49,7 +50,8 @@
     "@typescript-eslint/naming-convention": 0,
     "jsx-a11y/control-has-associated-label": 0,
     "import/no-extraneous-dependencies": 0,
-    "import/order": ["error", {"newlines-between": "always", "alphabetize": {"order": "asc", "caseInsensitive": true}}],
+    "simple-import-sort/imports": "error",
+    "unused-imports/no-unused-imports": "error",
     "object-curly-spacing": [
       1,
       "always"

@@ -4,29 +4,28 @@ import menu2Fill from '@iconify/icons-eva/menu-2-fill'
 import { Icon } from '@iconify/react'
 import {
   Box,
-  List,
-  Link,
-  Drawer,
   Collapse,
+  Drawer,
+  Link,
   LinkProps,
-  ListItemText,
-  ListItemIcon,
+  List,
   ListItemButton,
-  ListItemButtonProps
+  ListItemButtonProps,
+  ListItemIcon,
+  ListItemText
 } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
-import { useState, useEffect, ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { NavLink as RouterLink, useLocation } from 'react-router-dom'
-// material
 
+// material
 // components
 import { MIconButton } from '../../components/@material-extend'
 import Logo from '../../components/Logo'
 import NavSection from '../../components/NavSection'
 import Scrollbar from '../../components/Scrollbar'
-
 //
-import { MenuProps, MenuItemProps } from './MainNavbar'
+import { MenuItemProps, MenuProps } from './MainNavbar'
 
 // ----------------------------------------------------------------------
 

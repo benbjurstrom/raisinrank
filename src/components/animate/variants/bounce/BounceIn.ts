@@ -1,9 +1,9 @@
 import {
   varBounceOut,
-  varBounceOutUp,
   varBounceOutDown,
   varBounceOutLeft,
-  varBounceOutRight
+  varBounceOutRight,
+  varBounceOutUp
 } from './BounceOut'
 
 // ----------------------------------------------------------------------

@@ -1,11 +1,11 @@
-import {format, parseISO} from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 type Props = {
   dateString: string
   className?: string
 }
 
-const Date1 = ({dateString, className}: Props): JSX.Element => {
+const Date1 = ({ dateString, className }: Props): JSX.Element => {
   const date = parseISO(dateString)
   return (
     <time dateTime={dateString} className={className}>

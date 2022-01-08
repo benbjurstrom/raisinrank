@@ -3,7 +3,7 @@ import personFill from '@iconify/icons-eva/person-fill'
 import settings2Fill from '@iconify/icons-eva/settings-2-fill'
 import { Icon } from '@iconify/react'
 // material
-import { Avatar, Button, Box, Divider, MenuItem, Typography } from '@mui/material'
+import { Avatar, Box, Button, Divider, MenuItem, Typography } from '@mui/material'
 import { alpha } from '@mui/material/styles'
 import { useRef, useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'

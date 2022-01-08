@@ -1,7 +1,6 @@
 import { db, Listing } from '../db'
 // @ts-ignore
 import { idlFactory } from '../dids/ape.did.js'
-
 import { callCanister, getActor, tokenIdentifier } from './helpers'
 
 export const updateListings = async (canisterId: string): Promise<void> => {

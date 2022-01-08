@@ -3,7 +3,6 @@ import { Box, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { Sale } from '../db'
-
 import ColorPreview from './ColorPreview'
 import DateTime1 from './elements/DateTime1'
 import Price1 from './elements/Price1'

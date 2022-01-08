@@ -2,15 +2,14 @@
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
-import { parseISO, getUnixTime, getTime } from 'date-fns'
+import { getTime, getUnixTime, parseISO } from 'date-fns'
 import { useLiveQuery } from 'dexie-react-hooks'
 import _ from 'lodash'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
 // components
-
 import { ChartBar } from '../components/charts'
 import Info2 from '../components/elements/Info2'
 import ListingCard from '../components/ListingCard'
@@ -18,7 +17,7 @@ import Page from '../components/Page'
 import { db, Listing } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
-import { updateListings, deleteListings } from '../utils/updateListings'
+import { deleteListings, updateListings } from '../utils/updateListings'
 // hooks
 
 // ----------------------------------------------------------------------

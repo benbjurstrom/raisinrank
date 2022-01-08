@@ -3,7 +3,7 @@ import { Box, Container, Typography, useTheme } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 
 //
-import { varFadeInUp, MotionInView } from '../../animate'
+import { MotionInView, varFadeInUp } from '../../animate'
 
 // ----------------------------------------------------------------------
 

@@ -1,9 +1,9 @@
 // material
-import { Box, Grid, Button, Container, Typography } from '@mui/material'
-import { alpha, useTheme, styled } from '@mui/material/styles'
+import { Box, Button, Container, Grid, Typography } from '@mui/material'
+import { alpha, styled, useTheme } from '@mui/material/styles'
 
 //
-import { varFadeInUp, MotionInView } from '../../animate'
+import { MotionInView, varFadeInUp } from '../../animate'
 
 // ----------------------------------------------------------------------
 

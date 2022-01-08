@@ -72,6 +72,7 @@
     "dexie-react-hooks": "^1.1.1",
     "draft-js": "^0.11.7",
     "emoji-mart": "^3.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "ethereum-blockies-base64": "^1.0.2",
     "framer-motion": "^4.1.17",
     "highlight.js": "^11.2.0",

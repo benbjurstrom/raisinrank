@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom'
 
 import { MHidden } from '../../components/@material-extend'
 import useCollapseDrawer from '../../hooks/useCollapseDrawer'
-
 import DashboardNavbar from './DashboardNavbar'
 import DashboardSidebar from './DashboardSidebar'
 

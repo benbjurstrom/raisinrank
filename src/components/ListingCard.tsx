@@ -4,7 +4,6 @@ import { Box, Card, Stack, Typography } from '@mui/material'
 import { styled, useTheme } from '@mui/material/styles'
 
 import { Listing } from '../db'
-
 import ColorPreview from './ColorPreview'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'

@@ -1,9 +1,9 @@
-import { Box, Button, Typography, Container } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 import { Link as RouterLink } from 'react-router-dom'
-// material
 
+// material
 // components
 import { PageNotFoundIllustration } from '../assets'
 import { MotionContainer, varBounceIn } from '../components/animate'

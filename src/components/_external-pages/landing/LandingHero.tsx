@@ -1,9 +1,9 @@
-import { Box, Container, Typography, Stack, Grid } from '@mui/material'
+import { Box, Container, Grid, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 
 import { Canisters } from '../../../utils/canisterResolver'
-import { varFadeIn, varFadeInUp, varWrapEnter, varFadeInRight } from '../../animate'
+import { varFadeIn, varFadeInRight, varFadeInUp, varWrapEnter } from '../../animate'
 import CanisterCard from '../../CanisterCard'
 
 const RootStyle = styled(motion.div)(({ theme }) => ({

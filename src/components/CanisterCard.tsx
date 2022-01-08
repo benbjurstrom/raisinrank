@@ -3,7 +3,6 @@ import { styled, useTheme } from '@mui/material/styles'
 import { NavLink as RouterLink } from 'react-router-dom'
 
 import { Canister } from '../utils/canisterResolver'
-
 import Label from './Label'
 
 type ShopProductCardProps = {

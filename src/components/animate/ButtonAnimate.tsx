@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 // material
 //
-import { varSmallClick, varMediumClick } from './variants'
+import { varMediumClick, varSmallClick } from './variants'
 
 // ----------------------------------------------------------------------
 

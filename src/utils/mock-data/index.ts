@@ -1,15 +1,15 @@
 import { sub } from 'date-fns'
 
 //
-import { fullAddress, country } from './address'
+import { country, fullAddress } from './address'
 import { boolean } from './boolean'
 import { company } from './company'
 import { email } from './email'
-import { firstName, lastName, fullName } from './name'
-import { price, rating, age, percent } from './number'
+import { firstName, fullName, lastName } from './name'
+import { age, percent, price, rating } from './number'
 import { phoneNumber } from './phoneNumber'
 import { role } from './role'
-import { title, sentence, description } from './text'
+import { description, sentence, title } from './text'
 
 // ----------------------------------------------------------------------
 

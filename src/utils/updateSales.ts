@@ -1,8 +1,7 @@
 import { db, Sale } from '../db'
 // @ts-ignore
 import { idlFactory } from '../dids/ape.did.js'
-
-import { callCanister, getActor, getDateFromNano, decodeTokenId } from './helpers'
+import { callCanister, decodeTokenId, getActor, getDateFromNano } from './helpers'
 
 export const updateSales = async (canisterId: string): Promise<void> => {
   const actor = getActor(idlFactory, canisterId)

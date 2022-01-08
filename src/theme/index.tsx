@@ -2,11 +2,11 @@
 import { CssBaseline } from '@mui/material'
 import {
   createTheme,
+  StyledEngineProvider,
   ThemeOptions,
-  ThemeProvider,
-  StyledEngineProvider
+  ThemeProvider
 } from '@mui/material/styles'
-import { useMemo, ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 //
 import breakpoints from './breakpoints'

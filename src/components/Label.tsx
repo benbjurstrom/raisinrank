@@ -1,6 +1,6 @@
 // material
 import { BoxProps } from '@mui/material'
-import { alpha, Theme, useTheme, styled } from '@mui/material/styles'
+import { alpha, styled, Theme, useTheme } from '@mui/material/styles'
 
 // @types
 import { ColorSchema } from '../@types/theme'

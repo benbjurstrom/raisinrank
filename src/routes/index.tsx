@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react'
-import { Navigate, useRoutes, useLocation, useParams } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { Navigate, useLocation, useParams, useRoutes } from 'react-router-dom'
 
 // layouts
 import LoadingScreen from '../components/LoadingScreen'

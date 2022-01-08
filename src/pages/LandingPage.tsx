@@ -1,16 +1,6 @@
 // material
 import { styled } from '@mui/material/styles'
 
-// components
-import {
-  LandingHero,
-  LandingMinimal,
-  LandingDarkMode,
-  LandingPricingPlans,
-  LandingAdvertisement,
-  LandingCleanInterfaces,
-  LandingHugePackElements
-} from '../components/_external-pages/landing'
 import Page from '../components/Page'
 
 // ----------------------------------------------------------------------

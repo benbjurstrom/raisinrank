@@ -1,9 +1,8 @@
-import { Buffer } from 'buffer'
-
 import { Actor, HttpAgent } from '@dfinity/agent'
 import { ActorSubclass } from '@dfinity/agent/lib/cjs/actor'
 import { IDL } from '@dfinity/candid'
 import { Principal } from '@dfinity/principal'
+import { Buffer } from 'buffer'
 import fetch from 'cross-fetch'
 
 const agent = new HttpAgent({

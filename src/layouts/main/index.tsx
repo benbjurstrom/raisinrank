@@ -1,11 +1,10 @@
-import { Box, Link, Container, Typography } from '@mui/material'
-import { useLocation, Outlet } from 'react-router-dom'
+import { Box, Container, Link, Typography } from '@mui/material'
+import { Outlet, useLocation } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
-// material
 
+// material
 // components
 import Logo from '../../components/Logo'
-
 //
 import MainFooter from './MainFooter'
 import MainNavbar from './MainNavbar'

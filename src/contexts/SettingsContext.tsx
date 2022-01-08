@@ -1,7 +1,7 @@
-import { ReactNode, createContext } from 'react'
+import { createContext, ReactNode } from 'react'
 
 // hooks
-import { ThemeMode, ThemeDirection, ThemeColor, SettingsContextProps } from '../@types/settings'
+import { SettingsContextProps, ThemeColor, ThemeDirection, ThemeMode } from '../@types/settings'
 import useLocalStorage from '../hooks/useLocalStorage'
 // theme
 import palette from '../theme/palette'

@@ -1,9 +1,9 @@
 // material
-import { Box, Grid, Card, Container, Typography, useMediaQuery } from '@mui/material'
-import { alpha, useTheme, styled } from '@mui/material/styles'
+import { Box, Card, Container, Grid, Typography, useMediaQuery } from '@mui/material'
+import { alpha, styled, useTheme } from '@mui/material/styles'
 
 //
-import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate'
+import { MotionInView, varFadeInDown, varFadeInUp } from '../../animate'
 
 // ----------------------------------------------------------------------
 

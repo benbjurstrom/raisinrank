@@ -2,11 +2,11 @@ import checkmarkFill from '@iconify/icons-eva/checkmark-fill'
 import chevronRightFill from '@iconify/icons-eva/chevron-right-fill'
 import { Icon } from '@iconify/react'
 // material
-import { Box, Grid, Card, Link, Stack, Button, Divider, Container, Typography } from '@mui/material'
-import { useTheme, styled, alpha } from '@mui/material/styles'
+import { Box, Button, Card, Container, Divider, Grid, Link, Stack, Typography } from '@mui/material'
+import { alpha, styled, useTheme } from '@mui/material/styles'
 
 //
-import { varFadeIn, varFadeInUp, MotionInView, varFadeInDown } from '../../animate'
+import { MotionInView, varFadeIn, varFadeInDown, varFadeInUp } from '../../animate'
 
 // ----------------------------------------------------------------------
 
