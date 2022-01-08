@@ -24,9 +24,9 @@ export default function Logo({ sx }: BoxProps) {
             y2="282"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#7635DC" />
-            <stop offset="0.390625" stop-color="#7635DC" />
-            <stop offset="0.864583" stop-color="#826AF9" />
+            <stop stopColor="#7635DC" />
+            <stop offset="0.390625" stopColor="#7635DC" />
+            <stop offset="0.864583" stopColor="#826AF9" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_2_6"
@@ -36,9 +36,9 @@ export default function Logo({ sx }: BoxProps) {
             y2="282"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#7635DC" />
-            <stop offset="0.390625" stop-color="#7635DC" />
-            <stop offset="0.864583" stop-color="#826AF9" />
+            <stop stopColor="#7635DC" />
+            <stop offset="0.390625" stopColor="#7635DC" />
+            <stop offset="0.864583" stopColor="#826AF9" />
           </linearGradient>
         </defs>
       </svg>

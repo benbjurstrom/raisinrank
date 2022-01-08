@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import { ChartBar } from '../components/charts'
+import MarketDepthChart from '../components/charts/MarketDepthChart'
 import Info2 from '../components/elements/Info2'
 import ListingCard from '../components/ListingCard'
 import Page from '../components/Page'
@@ -186,20 +186,20 @@ export default function Listings() {
           </Stack>
         </Stack>
         <Grid container spacing={3} sx={{ mt: 2 }}>
-          <Grid container item spacing={3} xs={12} sm={6}>
-            <Grid item xs={12} sm={6}>
+          <Grid container item spacing={2} xs={12} sm={4}>
+            <Grid item xs={12}>
               <Info2 data={allListings?.length ?? 0} description={'Total Listings'} />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <Info2
                 data={listings?.length ?? 0}
                 description={'Recent Updates'}
-                tooltip="Number of updates in the last hour to your browser's copy of the canister's listings"
+                tooltip="Listings added or modified in the last hour. NOTE: The market does not associate a time or date to its listing records. Therefore, recent listings are determined by comparing the current container listings with a copy saved in your browser."
               />
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            {chart ? <ChartBar data={chart} /> : ''}
+          <Grid item xs={12} sm={8}>
+            {chart ? <MarketDepthChart data={chart} /> : ''}
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 2 }}>

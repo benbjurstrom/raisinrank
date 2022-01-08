@@ -16,7 +16,7 @@ import { deleteSales, updateSales } from '../utils/updateSales'
 
 // ----------------------------------------------------------------------
 
-export default function PageOne() {
+export default function Transactions() {
   const { themeStretch } = useSettings()
   const canisterId = 'unssi-hiaaa-aaaah-qcmya-cai'
 

@@ -44,7 +44,10 @@ export default function Router() {
       path: '/:collection',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to={`/${collection}/listings`} replace /> },
+        {
+          path: `/:collection`,
+          element: <Navigate to={`/${collection}/listings`} replace />
+        },
         { path: 'listings', element: <Listings /> },
         { path: 'transactions', element: <Transactions /> },
         { path: 'hodlers', element: <Hodlers /> }
@@ -63,7 +66,7 @@ export default function Router() {
     {
       path: '/',
       element: <MainLayout />,
-      children: [{ element: <LandingPage /> }]
+      children: [{ path: '/', element: <LandingPage /> }]
     },
     { path: '*', element: <Navigate to="/404" replace /> }
   ])

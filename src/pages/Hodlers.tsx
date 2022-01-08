@@ -16,7 +16,7 @@ import { deleteTitles, updateTitles } from '../utils/updateTitles'
 
 // ----------------------------------------------------------------------
 
-export default function PageOne() {
+export default function Hodlers() {
   const { themeStretch } = useSettings()
   const canisterId = 'unssi-hiaaa-aaaah-qcmya-cai'
   const accountId = '6e8c68ac947d6d42f6fe3bde87672d9cea43c1e851de7bad1f013913bb23315d'
