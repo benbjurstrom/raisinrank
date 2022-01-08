@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Fugaz One
+- Font Author: Copyright (c) 2011 by LatinoType Limitada (info@latinotype.com), with Reserved Font Names "Fugaz" and "Fugaz One"
+- Font Source: http://fonts.gstatic.com/s/fugazone/v10/rax_HiWKp9EAITukFslMBBJek0vA8A.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
