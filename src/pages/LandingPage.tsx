@@ -1,15 +1,12 @@
 // material
 import { styled } from '@mui/material/styles'
 
+import { LandingHero } from '../components/_external-pages/landing'
 import Page from '../components/Page'
-
-// ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)({
   height: '100%'
 })
-
-// ----------------------------------------------------------------------
 
 export default function LandingPage() {
   return (

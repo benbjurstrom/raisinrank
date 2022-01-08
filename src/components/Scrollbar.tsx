@@ -49,6 +49,7 @@ export default function Scrollbar({ children, sx, ...other }: BoxProps & Props) 
 
   return (
     <RootStyle>
+      {/* @ts-ignore */}
       <SimpleBarStyle timeout={500} clickOnTrack={false} sx={sx} {...other}>
         {children}
       </SimpleBarStyle>

@@ -1,7 +1,7 @@
 import menu2Fill from '@iconify/icons-eva/menu-2-fill'
 import { Icon } from '@iconify/react'
 // material
-import { AppBar, Box, IconButton, Stack, Toolbar } from '@mui/material'
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -10,10 +10,6 @@ import { Link as RouterLink } from 'react-router-dom'
 import { MHidden } from '../../components/@material-extend'
 import Logo from '../../components/Logo'
 import useCollapseDrawer from '../../hooks/useCollapseDrawer'
-import AccountPopover from './AccountPopover'
-import LanguagePopover from './LanguagePopover'
-import NotificationsPopover from './NotificationsPopover'
-import Searchbar from './Searchbar'
 
 // ----------------------------------------------------------------------
 

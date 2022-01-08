@@ -2,7 +2,6 @@ import { Theme } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import { SxProps } from '@mui/system'
-import { format, parseISO } from 'date-fns'
 import makeBlockie from 'ethereum-blockies-base64'
 import React from 'react'
 

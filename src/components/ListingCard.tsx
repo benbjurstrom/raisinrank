@@ -1,10 +1,9 @@
 // material
 import StarsIcon from '@mui/icons-material/Stars'
 import { Box, Card, Stack, Typography } from '@mui/material'
-import { styled, useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 
 import { Listing } from '../db'
-import ColorPreview from './ColorPreview'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
 import Price1 from './elements/Price1'

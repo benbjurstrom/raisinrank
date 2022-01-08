@@ -47,11 +47,13 @@ export default function ChartBar({ data }: Props) {
   })
 
   return (
-    <ReactApexChart
-      type="bar"
-      series={[{ data, name: 'Listings' }]}
-      options={chartOptions}
-      height={320}
-    />
+    <RootStyle>
+      <ReactApexChart
+        type="bar"
+        series={[{ data, name: 'Listings' }]}
+        options={chartOptions}
+        height={320}
+      />
+    </RootStyle>
   )
 }

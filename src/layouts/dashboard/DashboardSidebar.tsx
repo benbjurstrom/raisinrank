@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Box,
-  CardActionArea,
-  Drawer,
-  Link,
-  Stack,
-  Tooltip,
-  Typography
-} from '@mui/material'
+import { Avatar, Box, Drawer, Stack, Typography } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 import { useEffect } from 'react'
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom'
@@ -65,51 +56,6 @@ const ProductImgStyle = styled('img')(({ theme }) => ({
   borderRadius: '100%'
 }))
 
-// ----------------------------------------------------------------------
-
-type IconCollapseProps = {
-  onToggleCollapse: VoidFunction
-  collapseClick: boolean
-}
-
-function IconCollapse({ onToggleCollapse, collapseClick }: IconCollapseProps) {
-  return (
-    <Tooltip title="Mini Menu">
-      <CardActionArea
-        onClick={onToggleCollapse}
-        sx={{
-          width: 18,
-          height: 18,
-          display: 'flex',
-          cursor: 'pointer',
-          borderRadius: '50%',
-          alignItems: 'center',
-          color: 'text.primary',
-          justifyContent: 'center',
-          border: 'solid 1px currentColor',
-          ...(collapseClick && {
-            borderWidth: 2
-          })
-        }}
-      >
-        <Box
-          sx={{
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            bgcolor: 'currentColor',
-            transition: (theme) => theme.transitions.create('all'),
-            ...(collapseClick && {
-              width: 0,
-              height: 0
-            })
-          }}
-        />
-      </CardActionArea>
-    </Tooltip>
-  )
-}
-
 type DashboardSidebarProps = {
   isOpenSidebar: boolean
   onCloseSidebar: VoidFunction
@@ -130,7 +76,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }: Dash
     }
   ]
 
-  const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } =
+  const { isCollapse, collapseClick, collapseHover, onHoverEnter, onHoverLeave } =
     useCollapseDrawer()
 
   useEffect(() => {

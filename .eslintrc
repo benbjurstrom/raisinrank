@@ -2,6 +2,7 @@
   "plugins": [
     "@typescript-eslint",
     "simple-import-sort",
+    "unused-imports",
     "prettier"
   ],
   "extends": [
@@ -57,8 +58,9 @@
       "always"
     ],
     "semi": ["error", "never"],
+
     "@typescript-eslint/no-unused-vars": [
-      1,
+      2,
       {
         "vars": "all",
         "args": "none"
@@ -74,5 +76,6 @@
         "semi": false
       }
     ]
-  }
+  },
+  "ignorePatterns": ["temp.js", "**/vendor/*.js"]
 }

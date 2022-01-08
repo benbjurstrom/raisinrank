@@ -1,15 +1,9 @@
 // material
 import { Box, BoxProps } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
 
 // ----------------------------------------------------------------------
 
 export default function Logo({ sx }: BoxProps) {
-  const theme = useTheme()
-  const PRIMARY_LIGHT = theme.palette.primary.light
-  const PRIMARY_MAIN = theme.palette.primary.main
-  const PRIMARY_DARK = theme.palette.primary.dark
-
   return (
     <Box sx={{ width: 40, height: 40, ...sx }}>
       <svg viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">

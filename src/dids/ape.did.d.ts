@@ -1,4 +1,3 @@
-import { IDL } from '@dfinity/candid'
 import type { Principal } from '@dfinity/principal'
 export type AccountIdentifier = string
 export type AccountIdentifier__1 = string

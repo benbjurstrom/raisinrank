@@ -1,6 +1,6 @@
 // material
 import InfoIcon from '@mui/icons-material/Info'
-import { Box, Card, ListItemIcon, Stack, Tooltip, Typography } from '@mui/material'
+import { Box, Card, Stack, Tooltip, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 // ----------------------------------------------------------------------

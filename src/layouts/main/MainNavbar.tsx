@@ -1,20 +1,9 @@
-import { AppBar, Box, Button, Container, Toolbar } from '@mui/material'
+import { AppBar, Box, Container, Toolbar } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 
-// material
-// hooks
-import { MHidden } from '../../components/@material-extend'
-import Label from '../../components/Label'
 import Logo from '../../components/Logo'
 import useOffSetTop from '../../hooks/useOffSetTop'
-// components
-//
-import navConfig from './MenuConfig'
-import MenuDesktop from './MenuDesktop'
-import MenuMobile from './MenuMobile'
-
-// ----------------------------------------------------------------------
 
 const APP_BAR_MOBILE = 64
 const APP_BAR_DESKTOP = 88
@@ -67,8 +56,6 @@ export type MenuProps = {
 
 export default function MainNavbar() {
   const isOffset = useOffSetTop(100)
-  const { pathname } = useLocation()
-  const isHome = pathname === '/'
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>

@@ -1,15 +1,13 @@
 // material
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
-import { getTime, getUnixTime, parseISO } from 'date-fns'
+import { getTime, parseISO } from 'date-fns'
 import { useLiveQuery } from 'dexie-react-hooks'
-import _ from 'lodash'
 import { useEffect, useState } from 'react'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-// components
 import { ChartBar } from '../components/charts'
 import Info2 from '../components/elements/Info2'
 import ListingCard from '../components/ListingCard'
@@ -18,9 +16,6 @@ import { db, Listing } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { deleteListings, updateListings } from '../utils/updateListings'
-// hooks
-
-// ----------------------------------------------------------------------
 
 export default function Listings() {
   const [featuredListing, setFeaturedListing] = useState<Listing | undefined>()
@@ -31,7 +26,7 @@ export default function Listings() {
   const { collection } = useParams()
   const canister = getCanisterFromSlug(collection)
 
-  let listings = useLiveQuery(() => {
+  const listings = useLiveQuery(() => {
     return db.listings
       .orderBy('timestamp')
       .filter((listing) => {
@@ -55,7 +50,7 @@ export default function Listings() {
   useEffect(() => {
     if (!listings) return
     setFeaturedListing(listings[Math.floor(Math.random() * listings.length)])
-  }, [listings?.length])
+  }, [listings, listings?.length])
 
   if (!listings)
     return (
