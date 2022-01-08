@@ -1,6 +1,7 @@
 // .eslintignore
 build/*
 public/*
+config/*
 src/dids/ape.did.js
 src/react-app-env.d.ts
 src/reportWebVitals.ts
