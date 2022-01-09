@@ -55,6 +55,8 @@ export default function TransactionList({ transactions }: TransactionListProps) 
         rowHeight={150}
         rows={transactions}
         columns={columns}
+        disableColumnSelector={true}
+        disableDensitySelector={true}
         components={{
           Toolbar: GridToolbar
         }}

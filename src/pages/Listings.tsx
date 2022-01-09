@@ -51,6 +51,16 @@ export default function Listings() {
     setFeaturedListing(listings[Math.floor(Math.random() * listings.length)])
   }, [listings, listings?.length])
 
+  async function handleLoadListings() {
+    setLoadingListings(true)
+    await updateListings(canister.id)
+    setLoadingListings(false)
+  }
+
+  useEffect(() => {
+    handleLoadListings()
+  }, [])
+
   if (!listings)
     return (
       <Container maxWidth={themeStretch ? false : 'xl'}>
@@ -63,12 +73,6 @@ export default function Listings() {
         </Typography>
       </Container>
     )
-
-  async function handleLoadListings() {
-    setLoadingListings(true)
-    await updateListings(canister.id)
-    setLoadingListings(false)
-  }
 
   let chart = null
   if (allListings) {

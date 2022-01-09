@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack'
 import { differenceInHours, parseISO } from 'date-fns'
 import { useLiveQuery } from 'dexie-react-hooks'
 import React from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { ChartBar } from '../components/charts'
@@ -35,6 +36,16 @@ export default function Transactions() {
       .toArray()
   })
 
+  async function handleLoadTransactions() {
+    setLoadingTransactions(true)
+    await updateTransactions(canister.id)
+    setLoadingTransactions(false)
+  }
+
+  useEffect(() => {
+    handleLoadTransactions()
+  }, [])
+
   if (!transactions)
     return (
       <Container maxWidth={themeStretch ? false : 'xl'}>
@@ -47,12 +58,6 @@ export default function Transactions() {
         </Typography>
       </Container>
     )
-
-  async function handleLoadTransactions() {
-    setLoadingTransactions(true)
-    await updateTransactions(canister.id)
-    setLoadingTransactions(false)
-  }
 
   const increments = [
     {
