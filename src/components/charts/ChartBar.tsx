@@ -3,37 +3,24 @@ import { styled } from '@mui/material/styles'
 import { merge } from 'lodash'
 import ReactApexChart from 'react-apexcharts'
 
-//
 import BaseOptionChart from './BaseOptionChart'
-
-// ----------------------------------------------------------------------
 
 type Props = {
   data: any[]
+  title: string
+  xTitle: string
+  yTitle: string
 }
 
 const RootStyle = styled(Card)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: theme.spacing(2, 2, 2, 3)
+  padding: theme.spacing(6, 2, 2, 2)
 }))
 
-export default function ChartBar({ data }: Props) {
+export default function ChartBar({ data, title, xTitle, yTitle }: Props) {
   const chartOptions = merge(BaseOptionChart(), {
     stroke: { show: false },
     title: {
-      text: 'Market Depth'
-    },
-    xaxis: {
-      title: {
-        text: 'Price Range'
-      }
-    },
-    yaxis: {
-      title: {
-        text: 'Listings'
-      }
+      text: title
     },
     plotOptions: {
       bar: { barHeight: '30%' }
@@ -52,7 +39,7 @@ export default function ChartBar({ data }: Props) {
         type="bar"
         series={[{ data, name: 'Listings' }]}
         options={chartOptions}
-        height={320}
+        height={280}
       />
     </RootStyle>
   )

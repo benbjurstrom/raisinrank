@@ -2,10 +2,8 @@
 import { Box, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { Sale } from '../db'
+import { Hodle } from '../db'
 import ColorPreview from './ColorPreview'
-import DateTime1 from './elements/DateTime1'
-import Price1 from './elements/Price1'
 import Label from './Label'
 
 // ----------------------------------------------------------------------
@@ -20,11 +18,11 @@ const ProductImgStyle = styled('img')(() => ({
 
 // ----------------------------------------------------------------------
 
-type SaleCardProps = {
-  sale: Sale
+type HodleCardProps = {
+  hodle: Hodle
 }
 
-export default function SaleCard({ sale }: SaleCardProps) {
+export default function HodleCard({ hodle }: HodleCardProps) {
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -39,23 +37,34 @@ export default function SaleCard({ sale }: SaleCardProps) {
             textTransform: 'uppercase'
           }}
         >
-          {sale.tokenIndex}
+          {hodle.tokenIndex}
         </Label>
         <ProductImgStyle
-          alt={sale.tokenId}
-          src={`https://${sale.canisterId}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${sale.tokenId}`}
+          alt={hodle.tokenId}
+          src={`https://${hodle.canisterId}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${hodle.tokenId}`}
         />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Typography variant="subtitle2" noWrap>
-          <DateTime1 dateString={sale.soldAt} />
+          test
         </Typography>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <ColorPreview colors={['#00AB55', '#000000']} />
           <Typography variant="subtitle1">
-            <Price1 price={sale.price} />
+            <Typography
+              component="span"
+              variant="body1"
+              sx={{
+                color: 'text.disabled',
+                textDecoration: 'line-through'
+              }}
+            >
+              <span>Something</span>
+            </Typography>
+            &nbsp;
+            <span>Else</span>
           </Typography>
         </Stack>
       </Stack>

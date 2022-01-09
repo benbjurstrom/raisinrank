@@ -1,20 +1,18 @@
+import DeleteIcon from '@mui/icons-material/Delete'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { Avatar, Box, Drawer, Stack, Typography } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom'
 
-// material
-// hooks
 import { MHidden } from '../../components/@material-extend'
 import Logo from '../../components/Logo'
 import NavSection from '../../components/NavSection'
 import Scrollbar from '../../components/Scrollbar'
 import SvgIconStyle from '../../components/SvgIconStyle'
+import { deleteDB } from '../../db'
 import useCollapseDrawer from '../../hooks/useCollapseDrawer'
 import { getCanisterFromSlug } from '../../utils/canisterResolver'
-
-// components
-//
 
 const getIcon = (name: string) => (
   <SvgIconStyle src={`/static/icons/navbar/${name}.svg`} sx={{ width: '100%', height: '100%' }} />
@@ -62,6 +60,14 @@ type DashboardSidebarProps = {
 }
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }: DashboardSidebarProps) {
+  const [deletingDB, setDeletingDB] = React.useState(false)
+
+  async function handleDeleteDB() {
+    setDeletingDB(true)
+    await deleteDB()
+    setDeletingDB(false)
+  }
+
   const { pathname } = useLocation()
   const { collection } = useParams()
   const canister = getCanisterFromSlug(collection)
@@ -90,7 +96,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }: Dash
     <Scrollbar
       sx={{
         height: '100%',
-        '& .simplebar-content': { height: '100%', display: 'flex', flexDirection: 'column' }
+        '& .simplebar-content': {
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start'
+        }
       }}
     >
       <Stack
@@ -129,6 +140,16 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }: Dash
       </Stack>
 
       <NavSection navConfig={sidebarConfig} isShow={!isCollapse} />
+      <Box sx={{ flexGrow: 1 }} />
+      <LoadingButton
+        startIcon={<DeleteIcon />}
+        sx={{ margin: 2 }}
+        color="error"
+        loading={deletingDB}
+        onClick={handleDeleteDB}
+      >
+        Reset Database
+      </LoadingButton>
     </Scrollbar>
   )
 

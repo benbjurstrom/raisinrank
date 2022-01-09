@@ -8,12 +8,12 @@ import { useParams } from 'react-router-dom'
 
 // components
 import Info1 from '../components/elements/Info1'
+import HodleCard from '../components/HodleCard'
 import Page from '../components/Page'
-import TitleCard from '../components/TitleCard'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
-import { deleteTitles, updateTitles } from '../utils/updateTitles'
+import { deleteHodles, updateHodles } from '../utils/updateHodles'
 // hooks
 
 // ----------------------------------------------------------------------
@@ -24,43 +24,43 @@ export default function Hodlers() {
   const canister = getCanisterFromSlug(collection)
   const accountId = '6e8c68ac947d6d42f6fe3bde87672d9cea43c1e851de7bad1f013913bb23315d'
 
-  const titles = useLiveQuery(() => {
-    return db.titles
+  const hodles = useLiveQuery(() => {
+    return db.hodles
       .orderBy('tokenIndex')
-      .filter((title) => {
-        return title.canisterId === canister.id && title.ownerId === accountId
+      .filter((hodle) => {
+        return hodle.canisterId === canister.id && hodle.ownerId === accountId
       })
       .limit(100)
       .toArray()
   })
 
   const ownersCount = useLiveQuery(() => {
-    return db.titles
+    return db.hodles
       .orderBy('ownerId')
-      .filter((title) => {
-        return title.canisterId === canister.id
+      .filter((hodle) => {
+        return hodle.canisterId === canister.id
       })
       .uniqueKeys(function (keysArray: any) {
         return keysArray.length
       })
   })
 
-  const [loadingTitles, setLoadingTitles] = React.useState(false)
-  const [deletingTitles, setDeletingTitles] = React.useState(false)
+  const [loadingHodles, setLoadingHodles] = React.useState(false)
+  const [deletingHodles, setDeletingHodles] = React.useState(false)
 
-  async function handleLoadTitles() {
-    setLoadingTitles(true)
-    await updateTitles(canister.id)
-    setLoadingTitles(false)
+  async function handleLoadHodles() {
+    setLoadingHodles(true)
+    await updateHodles(canister.id)
+    setLoadingHodles(false)
   }
 
-  async function handleDeleteTitles() {
-    setDeletingTitles(true)
-    await deleteTitles(canister.id)
-    setDeletingTitles(false)
+  async function handleDeleteHodles() {
+    setDeletingHodles(true)
+    await deleteHodles(canister.id)
+    setDeletingHodles(false)
   }
 
-  if (!titles) return <span>Loading</span>
+  if (!hodles) return <span>Loading</span>
 
   return (
     <Page title={`${canister.name} - Hodlers | RaisinRank.com`}>
@@ -71,25 +71,25 @@ export default function Hodlers() {
           </Typography>
           <Stack direction="row" spacing={3}>
             <Info1 data={ownersCount ?? 0} description={'Total Owners'} />
-            <Info1 data={titles.length ?? 0} description={'Current Owner Count'} />
+            <Info1 data={hodles.length ?? 0} description={'Current Owner Count'} />
           </Stack>
           <Stack direction="row" spacing={3}>
-            <LoadingButton loading={loadingTitles} variant="contained" onClick={handleLoadTitles}>
-              Update Titles
+            <LoadingButton loading={loadingHodles} variant="contained" onClick={handleLoadHodles}>
+              Update Hodles
             </LoadingButton>
             <LoadingButton
-              loading={deletingTitles}
+              loading={deletingHodles}
               variant="contained"
-              onClick={handleDeleteTitles}
+              onClick={handleDeleteHodles}
             >
-              Delete Titles
+              Delete Hodles
             </LoadingButton>
           </Stack>
           <Box>
             <Grid container spacing={3}>
-              {titles.map((title) => (
-                <Grid key={title.id} item xs={12} sm={6} md={3}>
-                  <TitleCard title={title} />
+              {hodles.map((hodle) => (
+                <Grid key={hodle.id} item xs={12} sm={6} md={3}>
+                  <HodleCard hodle={hodle} />
                 </Grid>
               ))}
             </Grid>

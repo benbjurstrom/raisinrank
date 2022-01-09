@@ -1,18 +1,20 @@
 // material
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
+import { differenceInHours, parseISO } from 'date-fns'
 import { useLiveQuery } from 'dexie-react-hooks'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import Info1 from '../components/elements/Info1'
+import { ChartBar } from '../components/charts'
+import Info2 from '../components/elements/Info2'
 import Page from '../components/Page'
-import SaleCard from '../components/SaleCard'
+import TransactionList from '../components/TransactionList'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
-import { deleteSales, updateSales } from '../utils/updateSales'
+import { updateTransactions } from '../utils/updateTransactions'
 
 // ----------------------------------------------------------------------
 
@@ -21,21 +23,19 @@ export default function Transactions() {
   const { collection } = useParams()
   const canister = getCanisterFromSlug(collection)
 
-  const [loadingSales, setLoadingSales] = React.useState(false)
-  const [deletingSales, setDeletingSales] = React.useState(false)
+  const [loadingTransactions, setLoadingTransactions] = React.useState(false)
 
-  const sales = useLiveQuery(() => {
-    return db.sales
+  const transactions = useLiveQuery(() => {
+    return db.transactions
       .orderBy('soldAt')
-      .filter((sale) => {
-        return sale.canisterId === canister.id
+      .filter((transaction) => {
+        return transaction.canisterId === canister.id
       })
       .reverse()
-      .limit(100)
       .toArray()
   })
 
-  if (!sales)
+  if (!transactions)
     return (
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <Typography
@@ -48,50 +48,202 @@ export default function Transactions() {
       </Container>
     )
 
-  const salesCount = sales.length
-
-  async function handleLoadSales() {
-    setLoadingSales(true)
-    await updateSales(canister.id)
-    setLoadingSales(false)
+  async function handleLoadTransactions() {
+    setLoadingTransactions(true)
+    await updateTransactions(canister.id)
+    setLoadingTransactions(false)
   }
 
-  async function handleDeleteSales() {
-    setDeletingSales(true)
-    await deleteSales(canister.id)
-    setDeletingSales(false)
-  }
+  const increments = [
+    {
+      x: '< 1 hour',
+      y: 0
+    },
+    {
+      x: '< 6 hours',
+      y: 0
+    },
+    {
+      x: '< 1 day',
+      y: 0
+    },
+    {
+      x: '< 7 days',
+      y: 0
+    },
+    {
+      x: '< 30 days',
+      y: 0
+    },
+    {
+      x: '< 1 year',
+      y: 0
+    },
+    {
+      x: '1 year+',
+      y: 0
+    }
+  ]
 
-  if (!sales) return <span>Loading</span>
+  const transactionsChart = transactions.reduce(function (acc, transaction) {
+    const hoursAgo = differenceInHours(Date.now(), parseISO(transaction.soldAt))
+    switch (true) {
+      case hoursAgo < 1:
+        acc[0].y += 1
+        break
+      case hoursAgo < 6:
+        acc[1].y += 1
+        break
+      case hoursAgo < 24:
+        acc[2].y += 1
+        break
+      case hoursAgo < 24 * 7:
+        acc[3].y += 1
+        break
+      case hoursAgo < 24 * 30:
+        acc[4].y += 1
+        break
+      case hoursAgo < 24 * 365:
+        acc[5].y += 1
+        break
+      default:
+        acc[6].y += 1
+        break
+    }
+    return acc
+  }, increments)
+
+  const totalVolume = transactions.reduce((sum, { price }) => sum + Number(price), 0)
+
+  const volumeChart = transactions
+    .reduce(
+      function (acc, transaction) {
+        const hoursAgo = differenceInHours(Date.now(), parseISO(transaction.soldAt))
+        const price = Number(transaction.price)
+        switch (true) {
+          case hoursAgo < 1:
+            acc[0].y += price
+            break
+          case hoursAgo < 6:
+            acc[1].y += price
+            break
+          case hoursAgo < 24:
+            acc[2].y += price
+            break
+          case hoursAgo < 24 * 7:
+            acc[3].y += price
+            break
+          case hoursAgo < 24 * 30:
+            acc[4].y += price
+            break
+          case hoursAgo < 24 * 365:
+            acc[5].y += price
+            break
+          default:
+            acc[6].y += price
+            break
+        }
+        return acc
+      },
+      [
+        {
+          x: '< 1 hour',
+          y: 0
+        },
+        {
+          x: '< 6 hours',
+          y: 0
+        },
+        {
+          x: '< 1 day',
+          y: 0
+        },
+        {
+          x: '< 7 days',
+          y: 0
+        },
+        {
+          x: '< 30 days',
+          y: 0
+        },
+        {
+          x: '< 1 year',
+          y: 0
+        },
+        {
+          x: '1 year+',
+          y: 0
+        }
+      ]
+    )
+    .map(function (increment) {
+      return {
+        x: increment.x,
+        y: Math.floor((increment.y / 100000000) * 100) / 100
+      }
+    })
 
   return (
     <Page title={`${canister.name} - Transactions | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <Stack spacing={3}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+        >
           <Typography variant="h3" component="h1" paragraph>
-            Recent Sales
+            Transaction History
           </Typography>
           <Stack direction="row" spacing={3}>
-            <Info1 data={salesCount ?? 0} description={'Total Sales'} />
-            <Info1 data={salesCount ?? 0} description={'Total Sales'} />
-          </Stack>
-          <Stack direction="row" spacing={3}>
-            <LoadingButton loading={loadingSales} variant="contained" onClick={handleLoadSales}>
-              Update Sales
-            </LoadingButton>
-            <LoadingButton loading={deletingSales} variant="contained" onClick={handleDeleteSales}>
-              Delete Sales
+            <LoadingButton
+              loading={loadingTransactions}
+              variant="contained"
+              onClick={handleLoadTransactions}
+            >
+              Update Transactions
             </LoadingButton>
           </Stack>
-          <Box>
-            <Grid container spacing={3}>
-              {sales.map((sale) => (
-                <Grid key={sale.id} item xs={12} sm={6} md={3}>
-                  <SaleCard sale={sale} />
-                </Grid>
-              ))}
+        </Stack>
+        <Stack spacing={3}>
+          <Grid container spacing={3} sx={{ mt: 2 }}>
+            <Grid container item spacing={2} xs={12} sm={4}>
+              <Grid item xs={12}>
+                <Info2 data={transactions.length} description={'Total Transactions'} />
+              </Grid>
+              <Grid item xs={12}>
+                <Info2
+                  data={Math.floor((totalVolume / 100000000) * 100) / 100}
+                  description={'Total Volume'}
+                />
+              </Grid>
             </Grid>
-          </Box>
+            <Grid item xs={12} sm={4}>
+              {transactionsChart ? (
+                <ChartBar
+                  data={transactionsChart}
+                  title="Transaction history"
+                  xTitle="Date Range"
+                  yTitle="Transactions"
+                />
+              ) : (
+                ''
+              )}
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              {volumeChart ? (
+                <ChartBar
+                  data={volumeChart}
+                  title="Transaction volume"
+                  xTitle="Date Range"
+                  yTitle="Total ICP"
+                />
+              ) : (
+                ''
+              )}
+            </Grid>
+          </Grid>
+          <TransactionList transactions={transactions} />
         </Stack>
       </Container>
     </Page>

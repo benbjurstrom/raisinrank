@@ -8,19 +8,18 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import MarketDepthChart from '../components/charts/MarketDepthChart'
+import { ChartBar } from '../components/charts'
 import Info2 from '../components/elements/Info2'
 import ListingCard from '../components/ListingCard'
 import Page from '../components/Page'
 import { db, Listing } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
-import { deleteListings, updateListings } from '../utils/updateListings'
+import { updateListings } from '../utils/updateListings'
 
 export default function Listings() {
   const [featuredListing, setFeaturedListing] = useState<Listing | undefined>()
   const [loadingListings, setLoadingListings] = React.useState(false)
-  const [deletingListings, setDeletingListings] = React.useState(false)
 
   const { themeStretch } = useSettings()
   const { collection } = useParams()
@@ -69,12 +68,6 @@ export default function Listings() {
     setLoadingListings(true)
     await updateListings(canister.id)
     setLoadingListings(false)
-  }
-
-  async function handleDeleteListings() {
-    setDeletingListings(true)
-    await deleteListings(canister.id)
-    setDeletingListings(false)
   }
 
   let chart = null
@@ -152,8 +145,6 @@ export default function Listings() {
         }
       ]
     )
-
-    console.log(chart)
   }
 
   return (
@@ -176,13 +167,6 @@ export default function Listings() {
             >
               Update Listings
             </LoadingButton>
-            <LoadingButton
-              loading={deletingListings}
-              variant="contained"
-              onClick={handleDeleteListings}
-            >
-              Delete Listings
-            </LoadingButton>
           </Stack>
         </Stack>
         <Grid container spacing={3} sx={{ mt: 2 }}>
@@ -199,7 +183,11 @@ export default function Listings() {
             </Grid>
           </Grid>
           <Grid item xs={12} sm={8}>
-            {chart ? <MarketDepthChart data={chart} /> : ''}
+            {chart ? (
+              <ChartBar data={chart} title="Market Depth" xTitle="Price" yTitle="Listings" />
+            ) : (
+              ''
+            )}
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 2 }}>

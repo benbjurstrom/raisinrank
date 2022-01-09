@@ -48,11 +48,6 @@ export const updateListings = async (canisterId: string): Promise<void> => {
   return
 }
 
-export const deleteListings = async (canisterId: string): Promise<void> => {
-  const listings = db.listings.where('canisterId').equals(canisterId)
-  await listings.delete()
-}
-
 function transformListingResponse(response: any, canisterId: string): Listing[] {
   return response.map((record: any) => {
     return {

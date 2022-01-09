@@ -1,30 +1,32 @@
-import { db, Sale } from '../db'
+import { db, Transaction } from '../db'
 // @ts-ignore
 import { idlFactory } from '../dids/ape.did.js'
 import { callCanister, decodeTokenId, getActor, getDateFromNano } from './helpers'
 
-export const updateSales = async (canisterId: string): Promise<void> => {
+export const updateTransactions = async (canisterId: string): Promise<void> => {
   const actor = getActor(idlFactory, canisterId)
   const response = await callCanister(actor, 'transactions')
 
-  const dbSales = await db.sales.where('canisterId').equals(canisterId).toArray()
-  const canisterSales = transformSaleResponse(response, canisterId)
+  const dbTransactions = await db.transactions.where('canisterId').equals(canisterId).toArray()
+  const canisterTransactions = transformTransactionResponse(response, canisterId)
 
-  // Add any new sales
-  const newSales = canisterSales.filter((canisterSales) => {
-    return !dbSales.some((dbSale) => dbSale.tokenId === canisterSales.tokenId)
+  // Add any new transactions
+  const newTransactions = canisterTransactions.filter((canisterTransactions) => {
+    return !dbTransactions.some(
+      (dbTransaction) => dbTransaction.tokenId === canisterTransactions.tokenId
+    )
   })
 
-  await db.sales.bulkAdd(newSales)
+  await db.transactions.bulkAdd(newTransactions)
   return
 }
 
-export const deleteSales = async (canisterId: string): Promise<void> => {
-  const sales = db.sales.where('canisterId').equals(canisterId)
-  await sales.delete()
+export const deleteTransactions = async (canisterId: string): Promise<void> => {
+  const transactions = db.transactions.where('canisterId').equals(canisterId)
+  await transactions.delete()
 }
 
-function transformSaleResponse(response: any, canisterId: string): Sale[] {
+function transformTransactionResponse(response: any, canisterId: string): Transaction[] {
   return response.map((record: any) => {
     return {
       canisterId,
@@ -40,7 +42,7 @@ function transformSaleResponse(response: any, canisterId: string): Sale[] {
 }
 
 //   for await (const record of result) {
-//     const sale: Sale = {
+//     const transaction: Transaction = {
 //       canisterId,
 //       tokenId: tokenIdentifier(canisterId, record[0]),
 //       tokenIndex: record[0],
@@ -50,9 +52,9 @@ function transformSaleResponse(response: any, canisterId: string): Sale[] {
 //       timestamp: new Date().toISOString()
 //     }
 //
-//     const count = await db.sales.where('tokenId').equals(sale.tokenId).count()
+//     const count = await db.transactions.where('tokenId').equals(transaction.tokenId).count()
 //     if (!count) {
-//       await db.sales.add(sale)
+//       await db.transactions.add(transaction)
 //       continue
 //     }
 //   }

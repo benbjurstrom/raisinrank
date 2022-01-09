@@ -1,26 +1,26 @@
-import { db, Title } from '../db'
+import { db, Hodle } from '../db'
 // @ts-ignore
 import { idlFactory } from '../dids/ape.did.js'
 import { callCanister, getActor, tokenIdentifier } from './helpers'
 
-export const updateTitles = async (canisterId: string): Promise<void> => {
+export const updateHodles = async (canisterId: string): Promise<void> => {
   const actor = getActor(idlFactory, canisterId)
   const response = await callCanister(actor, 'getRegistry')
 
-  await deleteTitles(canisterId)
-  const titles = transformTitleResponse(response, canisterId)
-  await db.titles.bulkAdd(titles)
+  await deleteHodles(canisterId)
+  const hodles = transformHodleResponse(response, canisterId)
+  await db.hodles.bulkAdd(hodles)
 
   return
 }
 
-export const deleteTitles = async (canisterId: string): Promise<void> => {
-  await db.titles.where('canisterId').equals(canisterId).delete()
+export const deleteHodles = async (canisterId: string): Promise<void> => {
+  await db.hodles.where('canisterId').equals(canisterId).delete()
 }
 
-function transformTitleResponse(response: any, canisterId: string): Title[] {
+function transformHodleResponse(response: any, canisterId: string): Hodle[] {
   return response.map((record: any) => {
-    console.log(record)
+    // console.log(record)
     return {
       canisterId,
       tokenId: tokenIdentifier(canisterId, record[0]),
