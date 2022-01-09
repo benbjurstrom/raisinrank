@@ -43,7 +43,10 @@ export default function Transactions() {
   }
 
   useEffect(() => {
-    updateTransactions(canister.id)
+    setLoadingTransactions(true)
+    updateTransactions(canister.id).then(function () {
+      setLoadingTransactions(false)
+    })
   }, [canister.id])
 
   if (!transactions)

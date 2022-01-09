@@ -58,7 +58,10 @@ export default function Listings() {
   }
 
   useEffect(() => {
-    updateListings(canister.id)
+    setLoadingListings(true)
+    updateListings(canister.id).then(function () {
+      setLoadingListings(false)
+    })
   }, [canister.id])
 
   if (!listings)
