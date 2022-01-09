@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import ReactGA from 'react-ga4'
 import { Navigate, useLocation, useRoutes } from 'react-router-dom'
 
 // layouts
@@ -34,10 +35,13 @@ const Loadable = (Component: any) => (props: any) => {
     </Suspense>
   )
 }
-
 export default function Router() {
   const { pathname } = useLocation()
   const collection = pathname.split('/')[1]
+
+  ReactGA.initialize('G-M525HKJCSH')
+  ReactGA.send({ hitType: 'pageview', page: pathname })
+
   return useRoutes([
     // Dashboard Routes
     {
