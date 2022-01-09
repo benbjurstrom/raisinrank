@@ -13,7 +13,9 @@ export const updateTransactions = async (canisterId: string): Promise<void> => {
   // Add any new transactions
   const newTransactions = canisterTransactions.filter((canisterTransactions) => {
     return !dbTransactions.some(
-      (dbTransaction) => dbTransaction.tokenId === canisterTransactions.tokenId
+      (dbTransaction) =>
+        dbTransaction.tokenId === canisterTransactions.tokenId &&
+        dbTransaction.soldAt === canisterTransactions.soldAt
     )
   })
 
