@@ -53,7 +53,7 @@ function transformListingResponse(response: any, canisterId: string): Listing[] 
     return {
       canisterId,
       tokenId: tokenIdentifier(canisterId, record[0]),
-      tokenIndex: record[0],
+      tokenIndex: record[0] + 1,
       sellerId: record[1].seller.toString(),
       price: record[1].price.toString(),
       historicPrice: null,

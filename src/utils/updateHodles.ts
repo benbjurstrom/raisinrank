@@ -24,7 +24,7 @@ function transformHodleResponse(response: any, canisterId: string): Hodle[] {
     return {
       canisterId,
       tokenId: tokenIdentifier(canisterId, record[0]),
-      tokenIndex: record[0],
+      tokenIndex: record[0] + 1,
       ownerId: record[1],
       timestamp: new Date().toISOString()
     }

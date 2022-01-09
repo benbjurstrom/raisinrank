@@ -31,7 +31,7 @@ function transformTransactionResponse(response: any, canisterId: string): Transa
     return {
       canisterId,
       tokenId: record.token,
-      tokenIndex: decodeTokenId(record.token).index,
+      tokenIndex: decodeTokenId(record.token).index + 1,
       price: record.price.toString(),
       buyerId: record.buyer.toString(),
       sellerId: record.seller.toString(),
