@@ -58,8 +58,8 @@ export default function Listings() {
   }
 
   useEffect(() => {
-    handleLoadListings()
-  }, [])
+    updateListings(canister.id)
+  }, [canister.id])
 
   if (!listings)
     return (

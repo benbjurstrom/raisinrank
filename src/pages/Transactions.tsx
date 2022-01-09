@@ -43,8 +43,8 @@ export default function Transactions() {
   }
 
   useEffect(() => {
-    handleLoadTransactions()
-  }, [])
+    updateTransactions(canister.id)
+  }, [canister.id])
 
   if (!transactions)
     return (
