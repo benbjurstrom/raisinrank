@@ -4,6 +4,7 @@ import { Box, Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import { useLiveQuery } from 'dexie-react-hooks'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 // components
 import Info1 from '../components/elements/Info1'
@@ -11,6 +12,7 @@ import Page from '../components/Page'
 import TitleCard from '../components/TitleCard'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
+import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { deleteTitles, updateTitles } from '../utils/updateTitles'
 // hooks
 
@@ -18,23 +20,29 @@ import { deleteTitles, updateTitles } from '../utils/updateTitles'
 
 export default function Hodlers() {
   const { themeStretch } = useSettings()
-  const canisterId = 'unssi-hiaaa-aaaah-qcmya-cai'
+  const { collection } = useParams()
+  const canister = getCanisterFromSlug(collection)
   const accountId = '6e8c68ac947d6d42f6fe3bde87672d9cea43c1e851de7bad1f013913bb23315d'
 
   const titles = useLiveQuery(() => {
     return db.titles
       .orderBy('tokenIndex')
       .filter((title) => {
-        return title.canisterId === canisterId && title.ownerId === accountId
+        return title.canisterId === canister.id && title.ownerId === accountId
       })
       .limit(100)
       .toArray()
   })
 
   const ownersCount = useLiveQuery(() => {
-    return db.titles.orderBy('ownerId').uniqueKeys(function (keysArray: any) {
-      return keysArray.length
-    })
+    return db.titles
+      .orderBy('ownerId')
+      .filter((title) => {
+        return title.canisterId === canister.id
+      })
+      .uniqueKeys(function (keysArray: any) {
+        return keysArray.length
+      })
   })
 
   const [loadingTitles, setLoadingTitles] = React.useState(false)
@@ -42,20 +50,20 @@ export default function Hodlers() {
 
   async function handleLoadTitles() {
     setLoadingTitles(true)
-    await updateTitles(canisterId)
+    await updateTitles(canister.id)
     setLoadingTitles(false)
   }
 
   async function handleDeleteTitles() {
     setDeletingTitles(true)
-    await deleteTitles(canisterId)
+    await deleteTitles(canister.id)
     setDeletingTitles(false)
   }
 
   if (!titles) return <span>Loading</span>
 
   return (
-    <Page title="Pets | Titles">
+    <Page title={`${canister.name} - Hodlers | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <Stack spacing={3}>
           <Typography variant="h3" component="h1" paragraph>

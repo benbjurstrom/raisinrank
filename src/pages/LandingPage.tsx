@@ -10,7 +10,7 @@ const RootStyle = styled(Page)({
 
 export default function LandingPage() {
   return (
-    <RootStyle title="The starting point for your next project | Minimal-UI" id="move_top">
+    <RootStyle title="NFT Analytics | RaisinRank.com" id="move_top">
       <LandingHero />
     </RootStyle>
   )

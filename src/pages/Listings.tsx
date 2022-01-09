@@ -157,7 +157,7 @@ export default function Listings() {
   }
 
   return (
-    <Page title="Page One | Minimal-UI">
+    <Page title={`${canister.name} - Recent Listings | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
@@ -194,7 +194,7 @@ export default function Listings() {
               <Info2
                 data={listings?.length ?? 0}
                 description={'Recent Updates'}
-                tooltip="Listings added or modified in the last hour. NOTE: The market does not associate a time or date to its listing records. Therefore, recent listings are determined by comparing the current container listings with a copy saved in your browser."
+                tooltip="Listings added or modified in the last hour. NOTE: Entrepot does not associate a time or date to its listing records. Therefore, recent listings are determined by comparing the current market listings with a copy saved in your browser."
               />
             </Grid>
           </Grid>

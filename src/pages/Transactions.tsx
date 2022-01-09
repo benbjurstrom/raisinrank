@@ -4,54 +4,68 @@ import { Box, Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import { useLiveQuery } from 'dexie-react-hooks'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
-// components
 import Info1 from '../components/elements/Info1'
 import Page from '../components/Page'
 import SaleCard from '../components/SaleCard'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
+import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { deleteSales, updateSales } from '../utils/updateSales'
-// hooks
 
 // ----------------------------------------------------------------------
 
 export default function Transactions() {
   const { themeStretch } = useSettings()
-  const canisterId = 'unssi-hiaaa-aaaah-qcmya-cai'
+  const { collection } = useParams()
+  const canister = getCanisterFromSlug(collection)
+
+  const [loadingSales, setLoadingSales] = React.useState(false)
+  const [deletingSales, setDeletingSales] = React.useState(false)
 
   const sales = useLiveQuery(() => {
     return db.sales
       .orderBy('soldAt')
       .filter((sale) => {
-        return sale.canisterId === canisterId
+        return sale.canisterId === canister.id
       })
       .reverse()
       .limit(100)
       .toArray()
   })
 
-  const salesCount = useLiveQuery(() => db.sales.count())
+  if (!sales)
+    return (
+      <Container maxWidth={themeStretch ? false : 'xl'}>
+        <Typography
+          sx={{
+            color: 'text.primary'
+          }}
+        >
+          Loading...
+        </Typography>
+      </Container>
+    )
 
-  const [loadingSales, setLoadingSales] = React.useState(false)
-  const [deletingSales, setDeletingSales] = React.useState(false)
+  const salesCount = sales.length
 
   async function handleLoadSales() {
     setLoadingSales(true)
-    await updateSales(canisterId)
+    await updateSales(canister.id)
     setLoadingSales(false)
   }
 
   async function handleDeleteSales() {
     setDeletingSales(true)
-    await deleteSales(canisterId)
+    await deleteSales(canister.id)
     setDeletingSales(false)
   }
 
   if (!sales) return <span>Loading</span>
 
   return (
-    <Page title="Page One | Minimal-UI">
+    <Page title={`${canister.name} - Transactions | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <Stack spacing={3}>
           <Typography variant="h3" component="h1" paragraph>
