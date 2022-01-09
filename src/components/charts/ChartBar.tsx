@@ -22,6 +22,11 @@ export default function ChartBar({ data, title, xTitle, yTitle }: Props) {
     title: {
       text: title
     },
+    yaxis: {
+      title: {
+        text: yTitle
+      }
+    },
     plotOptions: {
       bar: { barHeight: '30%' }
     },

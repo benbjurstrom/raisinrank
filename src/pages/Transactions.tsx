@@ -187,7 +187,7 @@ export default function Transactions() {
     .map(function (increment) {
       return {
         x: increment.x,
-        y: Math.floor((increment.y / 100000000) * 100) / 100
+        y: Math.floor(increment.y / 100000000)
       }
     })
 
@@ -232,7 +232,7 @@ export default function Transactions() {
                   data={transactionsChart}
                   title="Transaction history"
                   xTitle="Date Range"
-                  yTitle="Transactions"
+                  yTitle="Total Transactions"
                 />
               ) : (
                 ''
@@ -244,7 +244,7 @@ export default function Transactions() {
                   data={volumeChart}
                   title="Transaction volume"
                   xTitle="Date Range"
-                  yTitle="Total ICP"
+                  yTitle="Volume in ICP"
                 />
               ) : (
                 ''

@@ -76,8 +76,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }: Dash
       subheader: 'general',
       items: [
         { title: 'Listings', path: `/${collection}/listings`, icon: ICONS.ecommerce },
-        { title: 'Transactions', path: `/${collection}/transactions`, icon: ICONS.ecommerce }
-        // { title: 'Hodlers', path: `/${collection}/hodlers`, icon: ICONS.user }
+        { title: 'Transactions', path: `/${collection}/transactions`, icon: ICONS.ecommerce },
+        { title: 'Hodlers', path: `/${collection}/hodlers`, icon: ICONS.user }
       ]
     }
   ]

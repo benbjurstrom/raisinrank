@@ -3,6 +3,11 @@ import { db, Hodle } from '../db'
 import { idlFactory } from '../dids/ape.did.js'
 import { callCanister, getActor, tokenIdentifier } from './helpers'
 
+export interface HodleCollection {
+  ownerId: string
+  count: number
+}
+
 export const updateHodles = async (canisterId: string): Promise<void> => {
   const actor = getActor(idlFactory, canisterId)
   const response = await callCanister(actor, 'getRegistry')

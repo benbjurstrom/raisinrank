@@ -191,7 +191,12 @@ export default function Listings() {
           </Grid>
           <Grid item xs={12} sm={8}>
             {chart ? (
-              <ChartBar data={chart} title="Market Depth" xTitle="Price" yTitle="Listings" />
+              <ChartBar
+                data={chart}
+                title="Market Depth"
+                xTitle="Price"
+                yTitle="Number of Listings"
+              />
             ) : (
               ''
             )}

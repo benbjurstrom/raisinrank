@@ -1,52 +1,35 @@
 // material
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import { useLiveQuery } from 'dexie-react-hooks'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
 // components
-import Info1 from '../components/elements/Info1'
-import HodleCard from '../components/HodleCard'
+import Info2 from '../components/elements/Info2'
+import HodlesList from '../components/HodlesList'
 import Page from '../components/Page'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
-import { deleteHodles, updateHodles } from '../utils/updateHodles'
-// hooks
-
-// ----------------------------------------------------------------------
+import { HodleCollection, updateHodles } from '../utils/updateHodles'
 
 export default function Hodlers() {
   const { themeStretch } = useSettings()
   const { collection } = useParams()
   const canister = getCanisterFromSlug(collection)
-  const accountId = '6e8c68ac947d6d42f6fe3bde87672d9cea43c1e851de7bad1f013913bb23315d'
 
   const hodles = useLiveQuery(() => {
     return db.hodles
       .orderBy('tokenIndex')
       .filter((hodle) => {
-        return hodle.canisterId === canister.id && hodle.ownerId === accountId
+        return hodle.canisterId === canister.id
       })
-      .limit(100)
       .toArray()
   })
 
-  const ownersCount = useLiveQuery(() => {
-    return db.hodles
-      .orderBy('ownerId')
-      .filter((hodle) => {
-        return hodle.canisterId === canister.id
-      })
-      .uniqueKeys(function (keysArray: any) {
-        return keysArray.length
-      })
-  })
-
   const [loadingHodles, setLoadingHodles] = React.useState(false)
-  const [deletingHodles, setDeletingHodles] = React.useState(false)
 
   async function handleLoadHodles() {
     setLoadingHodles(true)
@@ -54,46 +37,109 @@ export default function Hodlers() {
     setLoadingHodles(false)
   }
 
-  async function handleDeleteHodles() {
-    setDeletingHodles(true)
-    await deleteHodles(canister.id)
-    setDeletingHodles(false)
-  }
+  if (!hodles)
+    return (
+      <Container maxWidth={themeStretch ? false : 'xl'}>
+        <Typography
+          sx={{
+            color: 'text.primary'
+          }}
+        >
+          Loading...
+        </Typography>
+      </Container>
+    )
 
-  if (!hodles) return <span>Loading</span>
+  const hodleCollection = hodles
+    .reduce<HodleCollection[]>((acc, { ownerId }) => {
+      // Check if there exist an object in empty array whose CategoryId matches
+      let isElemExist = acc.findIndex(function (item: HodleCollection) {
+        return item.ownerId === ownerId
+      })
+
+      if (isElemExist === -1) {
+        let obj: HodleCollection = {
+          ownerId: ownerId,
+          count: 1
+        }
+        acc.push(obj)
+      } else {
+        acc[isElemExist].count += 1
+      }
+      return acc
+    }, [])
+    .sort((a, b) => b.count - a.count)
+
+  if (!hodleCollection)
+    return (
+      <Container maxWidth={themeStretch ? false : 'xl'}>
+        <Typography
+          sx={{
+            color: 'text.primary'
+          }}
+        >
+          Loading...
+        </Typography>
+      </Container>
+    )
 
   return (
     <Page title={`${canister.name} - Hodlers | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <Stack spacing={3}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+        >
           <Typography variant="h3" component="h1" paragraph>
-            Ownership Records
+            Hodlers
           </Typography>
           <Stack direction="row" spacing={3}>
-            <Info1 data={ownersCount ?? 0} description={'Total Owners'} />
-            <Info1 data={hodles.length ?? 0} description={'Current Owner Count'} />
-          </Stack>
-          <Stack direction="row" spacing={3}>
             <LoadingButton loading={loadingHodles} variant="contained" onClick={handleLoadHodles}>
-              Update Hodles
-            </LoadingButton>
-            <LoadingButton
-              loading={deletingHodles}
-              variant="contained"
-              onClick={handleDeleteHodles}
-            >
-              Delete Hodles
+              Update Hodlers
             </LoadingButton>
           </Stack>
-          <Box>
-            <Grid container spacing={3}>
-              {hodles.map((hodle) => (
-                <Grid key={hodle.id} item xs={12} sm={6} md={3}>
-                  <HodleCard hodle={hodle} />
-                </Grid>
-              ))}
+        </Stack>
+        <Stack spacing={3}>
+          <Grid container spacing={3} sx={{ mt: 2 }}>
+            <Grid container item spacing={2} xs={12} sm={4}>
+              <Grid item xs={12}>
+                <Info2 data={hodleCollection.length} description={'Total Hodlers'} />
+              </Grid>
+              {/*<Grid item xs={12}>*/}
+              {/*  <Info2*/}
+              {/*    data={Math.floor((totalVolume / 100000000) * 100) / 100}*/}
+              {/*    description={'Total Volume'}*/}
+              {/*  />*/}
+              {/*</Grid>*/}
             </Grid>
-          </Box>
+            <Grid item xs={12} sm={4}>
+              {/*{transactionsChart ? (*/}
+              {/*  <ChartBar*/}
+              {/*    data={transactionsChart}*/}
+              {/*    title="Transaction history"*/}
+              {/*    xTitle="Date Range"*/}
+              {/*    yTitle="Total Transactions"*/}
+              {/*  />*/}
+              {/*) : (*/}
+              {/*  ''*/}
+              {/*)}*/}
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              {/*{volumeChart ? (*/}
+              {/*  <ChartBar*/}
+              {/*    data={volumeChart}*/}
+              {/*    title="Transaction volume"*/}
+              {/*    xTitle="Date Range"*/}
+              {/*    yTitle="Volume in ICP"*/}
+              {/*  />*/}
+              {/*) : (*/}
+              {/*  ''*/}
+              {/*)}*/}
+            </Grid>
+          </Grid>
+          <HodlesList hodleCollection={hodleCollection} />
         </Stack>
       </Container>
     </Page>
