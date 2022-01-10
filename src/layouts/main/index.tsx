@@ -1,10 +1,14 @@
+import DeleteIcon from '@mui/icons-material/Delete'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Container, Link, Typography } from '@mui/material'
+import React from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
 
 // material
 // components
 import Logo from '../../components/Logo'
+import { deleteDB } from '../../db'
 //
 import MainFooter from './MainFooter'
 import MainNavbar from './MainNavbar'
@@ -12,6 +16,14 @@ import MainNavbar from './MainNavbar'
 // ----------------------------------------------------------------------
 
 export default function MainLayout() {
+  const [deletingDB, setDeletingDB] = React.useState(false)
+
+  async function handleDeleteDB() {
+    setDeletingDB(true)
+    await deleteDB()
+    setDeletingDB(false)
+  }
+
   const { pathname } = useLocation()
   const isHome = pathname === '/'
 
@@ -45,6 +57,15 @@ export default function MainLayout() {
                 @nullraisins
               </Link>
             </Typography>
+            <LoadingButton
+              startIcon={<DeleteIcon />}
+              sx={{ margin: 2 }}
+              color="error"
+              loading={deletingDB}
+              onClick={handleDeleteDB}
+            >
+              Reset Database
+            </LoadingButton>
           </Container>
         </Box>
       )}

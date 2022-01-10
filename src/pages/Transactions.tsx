@@ -228,27 +228,13 @@ export default function Transactions() {
             </Grid>
             <Grid item xs={12} sm={4}>
               {transactionsChart ? (
-                <ChartBar
-                  data={transactionsChart}
-                  title="Transaction history"
-                  xTitle="Date Range"
-                  yTitle="Total Transactions"
-                />
+                <ChartBar data={transactionsChart} title="Transactions count" />
               ) : (
                 ''
               )}
             </Grid>
             <Grid item xs={12} sm={4}>
-              {volumeChart ? (
-                <ChartBar
-                  data={volumeChart}
-                  title="Transaction volume"
-                  xTitle="Date Range"
-                  yTitle="Volume in ICP"
-                />
-              ) : (
-                ''
-              )}
+              {volumeChart ? <ChartBar data={volumeChart} title="Transaction volume (ICP)" /> : ''}
             </Grid>
           </Grid>
           <TransactionList transactions={transactions} />

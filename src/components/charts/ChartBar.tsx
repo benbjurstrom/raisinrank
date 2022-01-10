@@ -8,8 +8,8 @@ import BaseOptionChart from './BaseOptionChart'
 type Props = {
   data: any[]
   title: string
-  xTitle: string
-  yTitle: string
+  yTitle?: string
+  xTitle?: string
 }
 
 const RootStyle = styled(Card)(({ theme }) => ({
@@ -25,6 +25,11 @@ export default function ChartBar({ data, title, xTitle, yTitle }: Props) {
     yaxis: {
       title: {
         text: yTitle
+      }
+    },
+    xaxis: {
+      title: {
+        text: xTitle
       }
     },
     plotOptions: {

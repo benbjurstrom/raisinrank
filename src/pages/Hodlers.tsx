@@ -3,9 +3,10 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import { useLiveQuery } from 'dexie-react-hooks'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { ChartBar } from '../components/charts'
 // components
 import Info2 from '../components/elements/Info2'
 import HodlesList from '../components/HodlesList'
@@ -36,6 +37,13 @@ export default function Hodlers() {
     await updateHodles(canister.id)
     setLoadingHodles(false)
   }
+
+  useEffect(() => {
+    setLoadingHodles(true)
+    updateHodles(canister.id).then(function () {
+      setLoadingHodles(false)
+    })
+  }, [canister.id])
 
   if (!hodles)
     return (
@@ -83,6 +91,66 @@ export default function Hodlers() {
       </Container>
     )
 
+  const chart = hodleCollection.reduce(
+    function (acc, owner) {
+      const x = owner.count
+      switch (true) {
+        case x === 1:
+          acc[0].y += 1
+          break
+        case x < 5:
+          acc[1].y += 1
+          break
+        case x < 10:
+          acc[2].y += 1
+          break
+        case x < 20:
+          acc[3].y += 1
+          break
+        case x < 50:
+          acc[4].y += 1
+          break
+        case x < 100:
+          acc[5].y += 1
+          break
+        default:
+          acc[6].y += 1
+          break
+      }
+      return acc
+    },
+    [
+      {
+        x: '1',
+        y: 0
+      },
+      {
+        x: '< 5',
+        y: 0
+      },
+      {
+        x: '< 10',
+        y: 0
+      },
+      {
+        x: '< 20',
+        y: 0
+      },
+      {
+        x: '< 50',
+        y: 0
+      },
+      {
+        x: '< 100',
+        y: 0
+      },
+      {
+        x: '100+',
+        y: 0
+      }
+    ]
+  )
+
   return (
     <Page title={`${canister.name} - Hodlers | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
@@ -105,7 +173,10 @@ export default function Hodlers() {
           <Grid container spacing={3} sx={{ mt: 2 }}>
             <Grid container item spacing={2} xs={12} sm={4}>
               <Grid item xs={12}>
-                <Info2 data={hodleCollection.length} description={'Total Hodlers'} />
+                <Info2
+                  data={hodleCollection.length}
+                  description={`Unique accounts holding ${canister.slug}`}
+                />
               </Grid>
               {/*<Grid item xs={12}>*/}
               {/*  <Info2*/}
@@ -114,29 +185,13 @@ export default function Hodlers() {
               {/*  />*/}
               {/*</Grid>*/}
             </Grid>
-            <Grid item xs={12} sm={4}>
-              {/*{transactionsChart ? (*/}
-              {/*  <ChartBar*/}
-              {/*    data={transactionsChart}*/}
-              {/*    title="Transaction history"*/}
-              {/*    xTitle="Date Range"*/}
-              {/*    yTitle="Total Transactions"*/}
-              {/*  />*/}
-              {/*) : (*/}
-              {/*  ''*/}
-              {/*)}*/}
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              {/*{volumeChart ? (*/}
-              {/*  <ChartBar*/}
-              {/*    data={volumeChart}*/}
-              {/*    title="Transaction volume"*/}
-              {/*    xTitle="Date Range"*/}
-              {/*    yTitle="Volume in ICP"*/}
-              {/*  />*/}
-              {/*) : (*/}
-              {/*  ''*/}
-              {/*)}*/}
+            <Grid item xs={12} sm={8}>
+              <ChartBar
+                data={chart}
+                title={`Breakdown`}
+                xTitle={`# of ${canister.slug} held`}
+                yTitle="# of Accounts"
+              />
             </Grid>
           </Grid>
           <HodlesList hodleCollection={hodleCollection} />

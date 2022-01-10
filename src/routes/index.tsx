@@ -54,7 +54,8 @@ export default function Router() {
         },
         { path: 'listings', element: <Listings /> },
         { path: 'transactions', element: <Transactions /> },
-        { path: 'hodlers', element: <Hodlers /> }
+        { path: 'hodlers', element: <Hodlers /> },
+        { path: 'hodlers/:account', element: <HodlerDetails /> }
       ]
     },
 
@@ -82,6 +83,7 @@ export default function Router() {
 const Listings = Loadable(lazy(() => import('../pages/Listings')))
 const Transactions = Loadable(lazy(() => import('../pages/Transactions')))
 const Hodlers = Loadable(lazy(() => import('../pages/Hodlers')))
+const HodlerDetails = Loadable(lazy(() => import('../pages/HodlerDetails')))
 const NotFound = Loadable(lazy(() => import('../pages/Page404')))
 // Main
 const LandingPage = Loadable(lazy(() => import('../pages/LandingPage')))

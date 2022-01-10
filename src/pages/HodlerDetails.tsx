@@ -1,52 +1,32 @@
 // material
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
+import { Box } from '@mui/system'
 import { useLiveQuery } from 'dexie-react-hooks'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import Blockie from '../components/elements/Blockie'
 // components
-import Info1 from '../components/elements/Info1'
+import Info2 from '../components/elements/Info2'
 import HodleCard from '../components/HodleCard'
+import HodlePlanetTypes from '../components/HodlePlanetTypes'
 import Page from '../components/Page'
 import { db } from '../db'
 import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
-import { deleteHodles, updateHodles } from '../utils/updateHodles'
+import { updateHodles } from '../utils/updateHodles'
 // hooks
 
 // ----------------------------------------------------------------------
 
 export default function HodlerDetails() {
   const { themeStretch } = useSettings()
-  const { collection } = useParams()
+  const { collection, account } = useParams()
   const canister = getCanisterFromSlug(collection)
-  const accountId = '6e8c68ac947d6d42f6fe3bde87672d9cea43c1e851de7bad1f013913bb23315d'
-
-  const hodles = useLiveQuery(() => {
-    return db.hodles
-      .orderBy('tokenIndex')
-      .filter((hodle) => {
-        return hodle.canisterId === canister.id && hodle.ownerId === accountId
-      })
-      .limit(100)
-      .toArray()
-  })
-
-  const ownersCount = useLiveQuery(() => {
-    return db.hodles
-      .orderBy('ownerId')
-      .filter((hodle) => {
-        return hodle.canisterId === canister.id
-      })
-      .uniqueKeys(function (keysArray: any) {
-        return keysArray.length
-      })
-  })
 
   const [loadingHodles, setLoadingHodles] = React.useState(false)
-  const [deletingHodles, setDeletingHodles] = React.useState(false)
 
   async function handleLoadHodles() {
     setLoadingHodles(true)
@@ -54,13 +34,23 @@ export default function HodlerDetails() {
     setLoadingHodles(false)
   }
 
-  async function handleDeleteHodles() {
-    setDeletingHodles(true)
-    await deleteHodles(canister.id)
-    setDeletingHodles(false)
-  }
+  useEffect(() => {
+    setLoadingHodles(true)
+    updateHodles(canister.id).then(function () {
+      setLoadingHodles(false)
+    })
+  }, [canister.id])
 
-  if (!hodles)
+  const hodles = useLiveQuery(() => {
+    return db.hodles
+      .orderBy('tokenIndex')
+      .filter((hodle) => {
+        return hodle.canisterId === canister.id && hodle.ownerId === account
+      })
+      .toArray()
+  })
+
+  if (!hodles) {
     return (
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <Typography
@@ -72,45 +62,56 @@ export default function HodlerDetails() {
         </Typography>
       </Container>
     )
-
-  interface Group {
-    ownerId: string
-    count: number
   }
 
   return (
-    <Page title={`${canister.name} - Hodlers | RaisinRank.com`}>
+    <Page title={`${canister.name} - Wallet Collection | RaisinRank.com`}>
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <Stack spacing={3}>
-          <Typography variant="h3" component="h1" paragraph>
-            Ownership Records
-          </Typography>
-          <Stack direction="row" spacing={3}>
-            <Info1 data={ownersCount ?? 0} description={'Total Owners'} />
-            <Info1 data={hodles.length ?? 0} description={'Current Owner Count'} />
-          </Stack>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+        >
+          <Box>
+            <Typography variant="h3" component="h1">
+              {canister.name}
+            </Typography>
+            <Stack direction="row" alignItems="center" spacing={3}>
+              {account ? <Blockie address={account} /> : ''}
+              <Typography
+                sx={{ display: 'block', maxWidth: 150 }}
+                variant="h6"
+                component="h6"
+                noWrap
+              >
+                {account}
+              </Typography>
+            </Stack>
+          </Box>
           <Stack direction="row" spacing={3}>
             <LoadingButton loading={loadingHodles} variant="contained" onClick={handleLoadHodles}>
-              Update Hodles
-            </LoadingButton>
-            <LoadingButton
-              loading={deletingHodles}
-              variant="contained"
-              onClick={handleDeleteHodles}
-            >
-              Delete Hodles
+              Update Collection
             </LoadingButton>
           </Stack>
-          <Box>
-            <Grid container spacing={3}>
-              {hodles.map((hodle) => (
-                <Grid key={hodle.id} item xs={12} sm={6} md={3}>
-                  <HodleCard hodle={hodle} />
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
         </Stack>
+        <Grid container spacing={3} sx={{ mt: 2 }}>
+          <Grid container item spacing={2} xs={12} sm={4}>
+            <Grid item xs={12}>
+              <Info2 data={hodles.length} description={canister.name} />
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            {canister.slug === 'spaceapes' ? <HodlePlanetTypes hodles={hodles} /> : ''}
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} sx={{ mt: 2 }}>
+          {hodles.map((hodle) => (
+            <Grid key={hodle.id} item xs={12} sm={6} md={3} xl={2}>
+              <HodleCard hodle={hodle} />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </Page>
   )

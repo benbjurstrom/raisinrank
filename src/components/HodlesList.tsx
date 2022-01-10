@@ -1,6 +1,9 @@
+import { Stack, Typography } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbar } from '@mui/x-data-grid'
 import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
+import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { HodleCollection } from '../utils/updateHodles'
 import Blockie from './elements/Blockie'
 
@@ -11,9 +14,15 @@ const columns: GridColDef[] = [
   },
   {
     field: 'ownerId',
-    headerName: 'Owner',
+    headerName: 'Account',
+    width: 220,
     renderCell: (params: GridRenderCellParams<HodleCollection>) => (
-      <Blockie address={params.row.ownerId} />
+      <Stack direction="row" alignItems="center" spacing={3}>
+        <Blockie address={params.row.ownerId} />
+        <Typography sx={{ display: 'block', maxWidth: 100 }} noWrap>
+          {params.row.ownerId}
+        </Typography>
+      </Stack>
     )
   }
 ]
@@ -23,6 +32,10 @@ type HodleListProps = {
 }
 
 export default function HodlesList({ hodleCollection }: HodleListProps) {
+  const { collection } = useParams()
+  const canister = getCanisterFromSlug(collection)
+  const navigate = useNavigate()
+
   return (
     <div style={{ height: 900, width: '100%' }}>
       <DataGrid
@@ -34,6 +47,7 @@ export default function HodlesList({ hodleCollection }: HodleListProps) {
         components={{
           Toolbar: GridToolbar
         }}
+        onRowClick={(r) => navigate(`/${canister.slug}/hodlers/${r.row.ownerId}`)}
         // filterModel={{
         //   items: [
         //     { id: '1', columnField: 'sellerId', operatorValue: 'equals', value: '' },
