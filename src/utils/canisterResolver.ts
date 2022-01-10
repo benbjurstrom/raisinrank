@@ -10,7 +10,7 @@ export const Canisters: Canister[] = [
     id: 'oeee4-qaaaa-aaaak-qaaeq-cai',
     name: 'Motoko Day Drop',
     slug: 'motoko',
-    thumbnail: 'https://i.imgur.com/49Cw6XE.png'
+    thumbnail: 'https://i.imgur.com/7lNaRq6.png'
   },
   {
     id: 'zvycl-fyaaa-aaaah-qckmq-cai',
@@ -18,13 +18,6 @@ export const Canisters: Canister[] = [
     slug: 'icapes',
     thumbnail:
       'https://zvycl-fyaaa-aaaah-qckmq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=wnoum-dakor-uwiaa-aaaaa-b4ast-eaqca-aaeig-q'
-  },
-  {
-    id: 'bzsui-sqaaa-aaaah-qce2a-cai',
-    name: 'Poked bots',
-    slug: 'poked',
-    thumbnail:
-      'https://bzsui-sqaaa-aaaah-qce2a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=5xgg5-uykor-uwiaa-aaaaa-b4arg-qaqca-aabah-a'
   },
   {
     id: 'unssi-hiaaa-aaaah-qcmya-cai',
@@ -45,6 +38,13 @@ export const Canisters: Canister[] = [
     slug: 'icircle',
     thumbnail:
       'https://z7mqv-liaaa-aaaah-qcnqa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=fgrx7-oakor-uwiaa-aaaaa-b4atm-aaqca-aaaag-q'
+  },
+  {
+    id: 'bzsui-sqaaa-aaaah-qce2a-cai',
+    name: 'Poked bots',
+    slug: 'poked',
+    thumbnail:
+      'https://bzsui-sqaaa-aaaah-qce2a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=5xgg5-uykor-uwiaa-aaaaa-b4arg-qaqca-aabah-a'
   }
 ]
 

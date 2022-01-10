@@ -11,6 +11,7 @@ import Blockie from '../components/elements/Blockie'
 // components
 import Info2 from '../components/elements/Info2'
 import HodleCard from '../components/HodleCard'
+import HodlePetTypes from '../components/HodlePetTypes'
 import HodlePlanetTypes from '../components/HodlePlanetTypes'
 import Page from '../components/Page'
 import { db } from '../db'
@@ -103,6 +104,7 @@ export default function HodlerDetails() {
           </Grid>
           <Grid item xs={12} sm={8}>
             {canister.slug === 'spaceapes' ? <HodlePlanetTypes hodles={hodles} /> : ''}
+            {canister.slug === 'icpets' ? <HodlePetTypes hodles={hodles} /> : ''}
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 2 }}>
