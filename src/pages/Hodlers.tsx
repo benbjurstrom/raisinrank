@@ -191,6 +191,7 @@ export default function Hodlers() {
                 title={`Breakdown`}
                 xTitle={`# of ${canister.slug} held`}
                 yTitle="# of Accounts"
+                hoverText="Number of accounts"
               />
             </Grid>
           </Grid>

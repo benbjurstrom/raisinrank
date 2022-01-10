@@ -190,7 +190,11 @@ export default function Listings() {
             </Grid>
           </Grid>
           <Grid item xs={12} sm={8}>
-            {chart ? <ChartBar data={chart} title="Market Depth in ICP" /> : ''}
+            {chart ? (
+              <ChartBar data={chart} title="Market Depth in ICP" hoverText="Listings" />
+            ) : (
+              ''
+            )}
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 2 }}>

@@ -8,6 +8,7 @@ import BaseOptionChart from './BaseOptionChart'
 type Props = {
   data: any[]
   title: string
+  hoverText: string
   yTitle?: string
   xTitle?: string
 }
@@ -16,7 +17,7 @@ const RootStyle = styled(Card)(({ theme }) => ({
   padding: theme.spacing(6, 2, 2, 2)
 }))
 
-export default function ChartBar({ data, title, xTitle, yTitle }: Props) {
+export default function ChartBar({ data, title, xTitle, yTitle, hoverText }: Props) {
   const chartOptions = merge(BaseOptionChart(), {
     stroke: { show: false },
     title: {
@@ -47,7 +48,7 @@ export default function ChartBar({ data, title, xTitle, yTitle }: Props) {
     <RootStyle>
       <ReactApexChart
         type="bar"
-        series={[{ data, name: 'Listings' }]}
+        series={[{ data, name: hoverText }]}
         options={chartOptions}
         height={280}
       />

@@ -102,5 +102,5 @@ export default function HodlePlanetTypes({ hodles }: HodlesPlanetTypesProps) {
     ]
   )
 
-  return <ChartBar data={chart} title="Planet Stats" />
+  return <ChartBar data={chart} title="Planet Stats" hoverText="Planet Count" />
 }
