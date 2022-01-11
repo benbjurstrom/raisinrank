@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles'
 
 import { Listing } from '../db'
 import { Canister } from '../utils/canisterResolver'
+import { getAccountFromPrincipal } from '../utils/helpers'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
 import Price1 from './elements/Price1'
@@ -71,7 +72,7 @@ export default function ListingCard({ listing, featured, canister }: ListingCard
             <Blockie
               canister={canister}
               sx={{ width: 24, height: 24 }}
-              address={listing.sellerId}
+              address={getAccountFromPrincipal(listing.sellerId)}
             />
           )}
           <Typography variant="subtitle1">
