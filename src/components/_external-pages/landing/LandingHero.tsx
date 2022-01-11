@@ -2,7 +2,7 @@ import { Box, Container, Grid, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 
-import { Canisters } from '../../../utils/canisterResolver'
+import { Canister, Canisters } from '../../../utils/canisterResolver'
 import { varFadeIn, varFadeInRight, varFadeInUp, varWrapEnter } from '../../animate'
 import CanisterCard from '../../CanisterCard'
 
@@ -61,6 +61,13 @@ const HeroImgStyle = styled(motion.img)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LandingHero() {
+  const canisterChunks = Canisters.reduce<any[]>((all, one, i) => {
+    const ch = Math.floor(i / 3)
+    //@ts-ignore
+    all[ch] = [].concat(all[ch] || [], one)
+    return all
+  }, [])
+
   return (
     <>
       <RootStyle initial="initial" animate="animate" variants={varWrapEnter}>
@@ -79,15 +86,19 @@ export default function LandingHero() {
               </Typography>
             </motion.div>
 
-            <motion.div variants={varFadeInRight}>
-              <Grid container spacing={2}>
-                {Canisters.map((canister) => (
-                  <Grid key={canister.id} item xs={4}>
-                    <CanisterCard canister={canister} />
+            <Stack spacing={2}>
+              {canisterChunks.map((chunk: Canister[], index) => (
+                <motion.div key={index} variants={varFadeInRight}>
+                  <Grid container spacing={2}>
+                    {chunk.map((canister: Canister) => (
+                      <Grid key={canister.id} item xs={4}>
+                        <CanisterCard canister={canister} />
+                      </Grid>
+                    ))}
                   </Grid>
-                ))}
-              </Grid>
-            </motion.div>
+                </motion.div>
+              ))}
+            </Stack>
           </ContentStyle>
         </Container>
       </RootStyle>

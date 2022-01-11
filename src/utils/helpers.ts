@@ -17,6 +17,10 @@ export const getActor = (idlFactory: IDL.InterfaceFactory, canisterId: string) =
   })
 }
 
+export const getIcpTwoDecimals = (value: string) => {
+  return Math.floor((Number(value) / 100000000) * 100) / 100
+}
+
 export const getDateFromNano = (nanoseconds: bigint) => {
   return new Date(Math.floor(Number(BigInt(nanoseconds)) / 1000000))
 }

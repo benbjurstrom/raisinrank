@@ -1,10 +1,11 @@
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbar } from '@mui/x-data-grid'
+import { parseISO } from 'date-fns'
 import React from 'react'
 
 import { Transaction } from '../db'
+import { getIcpTwoDecimals } from '../utils/helpers'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
-import Price1 from './elements/Price1'
 import TransactionCard from './TransactionCard'
 
 const columns: GridColDef[] = [
@@ -19,10 +20,12 @@ const columns: GridColDef[] = [
   {
     field: 'price',
     headerName: 'Price',
-    renderCell: (params: GridRenderCellParams<Transaction>) => <Price1 price={params.row.price} />
+    type: 'number',
+    renderCell: (params: GridRenderCellParams<Transaction>) => <span>{params.row.price} ICP</span>
   },
   {
-    field: 'soldAt',
+    field: 'dateTime',
+    type: 'dateTime',
     headerName: 'Sold',
     renderCell: (params: GridRenderCellParams<Transaction>) => (
       <DateTime2 dateString={params.row.soldAt} />
@@ -49,11 +52,19 @@ type TransactionListProps = {
 }
 
 export default function TransactionList({ transactions }: TransactionListProps) {
+  const list = transactions.map((transaction) => {
+    return {
+      ...transaction,
+      price: getIcpTwoDecimals(transaction.price),
+      dateTime: parseISO(transaction.soldAt)
+    }
+  })
+
   return (
     <div style={{ height: 900, width: '100%' }}>
       <DataGrid
         rowHeight={150}
-        rows={transactions}
+        rows={list}
         columns={columns}
         disableColumnSelector={true}
         disableDensitySelector={true}
