@@ -46,7 +46,7 @@ export const Canisters: Canister[] = [
       'https://njgly-uaaaa-aaaah-qb6pa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=me6mq-dakor-uwiaa-aaaaa-b4apt-yaqca-aaemf-q'
   },
   {
-    id: 'v3zkd-syaaa-aaaah-qcm5a-ca',
+    id: 'v3zkd-syaaa-aaaah-qcm5a-cai',
     name: 'IC Kitties',
     slug: 'ickitties',
     thumbnail:
@@ -60,10 +60,11 @@ export const Canisters: Canister[] = [
       'https://bzsui-sqaaa-aaaah-qce2a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=5xgg5-uykor-uwiaa-aaaaa-b4arg-qaqca-aabah-a'
   },
   {
-    id: 'qcg3w-tyaaa-aaaah-qakea-cai',
-    name: 'ICPunks',
-    slug: 'icpunks',
-    thumbnail: 'https://qcg3w-tyaaa-aaaah-qakea-cai.raw.ic0.app/Token/29'
+    id: 'e3izy-jiaaa-aaaah-qacbq-cai',
+    name: 'Cronic Critters',
+    slug: 'cronics',
+    thumbnail:
+      'https://e3izy-jiaaa-aaaah-qacbq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=r3yqm-rykor-uwiaa-aaaaa-b4aaq-maqca-aaclp-a'
   }
 ]
 
