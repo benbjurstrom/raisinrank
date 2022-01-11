@@ -4,6 +4,7 @@ import { Box, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { Listing } from '../db'
+import { Canister } from '../utils/canisterResolver'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
 import Price1 from './elements/Price1'
@@ -24,9 +25,10 @@ const ProductImgStyle = styled('img')(() => ({
 type ListingCardProps = {
   listing: Listing
   featured?: Boolean
+  canister: Canister
 }
 
-export default function ListingCard({ listing, featured }: ListingCardProps) {
+export default function ListingCard({ listing, featured, canister }: ListingCardProps) {
   let featuredStyle = {}
   if (featured) {
     featuredStyle = {
@@ -66,13 +68,11 @@ export default function ListingCard({ listing, featured }: ListingCardProps) {
           {featured ? (
             <StarsIcon />
           ) : (
-            <a
-              href={`https://ic.rocks/principal/${listing.sellerId}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Blockie sx={{ width: 24, height: 24 }} address={listing.sellerId} />
-            </a>
+            <Blockie
+              canister={canister}
+              sx={{ width: 24, height: 24 }}
+              address={listing.sellerId}
+            />
           )}
           <Typography variant="subtitle1">
             {listing.historicPrice && !featured ? (

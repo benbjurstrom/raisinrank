@@ -249,7 +249,7 @@ export default function Transactions() {
               )}
             </Grid>
           </Grid>
-          <TransactionList transactions={transactions} />
+          <TransactionList canister={canister} transactions={transactions} />
         </Stack>
       </Container>
     </Page>

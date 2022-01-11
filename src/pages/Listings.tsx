@@ -191,7 +191,7 @@ export default function Listings() {
           </Grid>
           <Grid item xs={12} sm={8}>
             {chart ? (
-              <ChartBar data={chart} title="Market Depth in ICP" hoverText="Listings" />
+              <ChartBar data={chart} title="Market Depth (Listings)" hoverText="Listings" />
             ) : (
               ''
             )}
@@ -200,14 +200,14 @@ export default function Listings() {
         <Grid container spacing={3} sx={{ mt: 2 }}>
           {featuredListing ? (
             <Grid key={featuredListing.id} item xs={12} sm={6} md={3} xl={2}>
-              <ListingCard listing={featuredListing} featured />
+              <ListingCard canister={canister} listing={featuredListing} featured />
             </Grid>
           ) : (
             ''
           )}
           {listings.map((listing) => (
             <Grid key={listing.id} item xs={12} sm={6} md={3} xl={2}>
-              <ListingCard listing={listing} />
+              <ListingCard canister={canister} listing={listing} />
             </Grid>
           ))}
         </Grid>

@@ -7,26 +7,6 @@ import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { HodleCollection } from '../utils/updateHodles'
 import Blockie from './elements/Blockie'
 
-const columns: GridColDef[] = [
-  {
-    field: 'count',
-    headerName: 'Count'
-  },
-  {
-    field: 'ownerId',
-    headerName: 'Account',
-    width: 220,
-    renderCell: (params: GridRenderCellParams<HodleCollection>) => (
-      <Stack direction="row" alignItems="center" spacing={3}>
-        <Blockie address={params.row.ownerId} />
-        <Typography sx={{ display: 'block', maxWidth: 100 }} noWrap>
-          {params.row.ownerId}
-        </Typography>
-      </Stack>
-    )
-  }
-]
-
 type HodleListProps = {
   hodleCollection: HodleCollection[]
 }
@@ -35,6 +15,26 @@ export default function HodlesList({ hodleCollection }: HodleListProps) {
   const { collection } = useParams()
   const canister = getCanisterFromSlug(collection)
   const navigate = useNavigate()
+
+  const columns: GridColDef[] = [
+    {
+      field: 'count',
+      headerName: 'Count'
+    },
+    {
+      field: 'ownerId',
+      headerName: 'Account',
+      width: 220,
+      renderCell: (params: GridRenderCellParams<HodleCollection>) => (
+        <Stack direction="row" alignItems="center" spacing={3}>
+          <Blockie canister={canister} address={params.row.ownerId} />
+          <Typography sx={{ display: 'block', maxWidth: 100 }} noWrap>
+            {params.row.ownerId}
+          </Typography>
+        </Stack>
+      )
+    }
+  ]
 
   return (
     <div style={{ height: 900, width: '100%' }}>

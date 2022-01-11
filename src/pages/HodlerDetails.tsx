@@ -79,7 +79,7 @@ export default function HodlerDetails() {
               {canister.name}
             </Typography>
             <Stack direction="row" alignItems="center" spacing={3}>
-              {account ? <Blockie address={account} /> : ''}
+              {account ? <Blockie canister={canister} address={account} /> : ''}
               <Typography
                 sx={{ display: 'block', maxWidth: 150 }}
                 variant="h6"

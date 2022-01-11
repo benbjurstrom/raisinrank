@@ -3,55 +3,57 @@ import { parseISO } from 'date-fns'
 import React from 'react'
 
 import { Transaction } from '../db'
+import { Canister } from '../utils/canisterResolver'
 import { getIcpTwoDecimals } from '../utils/helpers'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
 import TransactionCard from './TransactionCard'
 
-const columns: GridColDef[] = [
-  {
-    field: 'tokenIndex',
-    headerName: 'NFT',
-    width: 150,
-    renderCell: (params: GridRenderCellParams<Transaction>) => {
-      return <TransactionCard transaction={params.row} />
-    }
-  },
-  {
-    field: 'price',
-    headerName: 'Price',
-    type: 'number',
-    renderCell: (params: GridRenderCellParams<Transaction>) => <span>{params.row.price} ICP</span>
-  },
-  {
-    field: 'dateTime',
-    type: 'dateTime',
-    headerName: 'Sold',
-    renderCell: (params: GridRenderCellParams<Transaction>) => (
-      <DateTime2 dateString={params.row.soldAt} />
-    )
-  },
-  {
-    field: 'sellerId',
-    headerName: 'Seller',
-    renderCell: (params: GridRenderCellParams<Transaction>) => (
-      <Blockie address={params.row.sellerId} />
-    )
-  },
-  {
-    field: 'buyerId',
-    headerName: 'Buyer',
-    renderCell: (params: GridRenderCellParams<Transaction>) => (
-      <Blockie address={params.row.buyerId} />
-    )
-  }
-]
-
 type TransactionListProps = {
   transactions: Transaction[]
+  canister: Canister
 }
 
-export default function TransactionList({ transactions }: TransactionListProps) {
+export default function TransactionList({ transactions, canister }: TransactionListProps) {
+  const columns: GridColDef[] = [
+    {
+      field: 'tokenIndex',
+      headerName: 'NFT',
+      width: 150,
+      renderCell: (params: GridRenderCellParams<Transaction>) => {
+        return <TransactionCard transaction={params.row} />
+      }
+    },
+    {
+      field: 'price',
+      headerName: 'Price',
+      type: 'number',
+      renderCell: (params: GridRenderCellParams<Transaction>) => <span>{params.row.price} ICP</span>
+    },
+    {
+      field: 'dateTime',
+      type: 'dateTime',
+      headerName: 'Sold',
+      renderCell: (params: GridRenderCellParams<Transaction>) => (
+        <DateTime2 dateString={params.row.soldAt} />
+      )
+    },
+    {
+      field: 'sellerId',
+      headerName: 'Seller',
+      renderCell: (params: GridRenderCellParams<Transaction>) => (
+        <Blockie canister={canister} address={params.row.sellerId} />
+      )
+    },
+    {
+      field: 'buyerId',
+      headerName: 'Buyer',
+      renderCell: (params: GridRenderCellParams<Transaction>) => (
+        <Blockie canister={canister} address={params.row.buyerId} />
+      )
+    }
+  ]
+
   const list = transactions.map((transaction) => {
     return {
       ...transaction,

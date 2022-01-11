@@ -63,8 +63,7 @@ export const Canisters: Canister[] = [
     id: 'e3izy-jiaaa-aaaah-qacbq-cai',
     name: 'Cronic Critters',
     slug: 'cronics',
-    thumbnail:
-      'https://e3izy-jiaaa-aaaah-qacbq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=r3yqm-rykor-uwiaa-aaaaa-b4aaq-maqca-aaclp-a'
+    thumbnail: 'https://i.imgur.com/bkJSAbx.png'
   }
 ]
 

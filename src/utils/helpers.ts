@@ -2,6 +2,8 @@ import { Actor, HttpAgent } from '@dfinity/agent'
 import { ActorSubclass } from '@dfinity/agent/lib/cjs/actor'
 import { IDL } from '@dfinity/candid'
 import { Principal } from '@dfinity/principal'
+import { getCrc32 } from '@dfinity/principal/lib/esm/utils/getCrc'
+import { sha224 } from '@dfinity/principal/lib/esm/utils/sha224'
 import { Buffer } from 'buffer'
 import fetch from 'cross-fetch'
 
@@ -32,6 +34,24 @@ export const callCanister = async (actor: ActorSubclass<any>, method: string): P
   } catch (e) {
     console.log(e)
   }
+}
+
+export const getAccountFromPrincipal = (principalId: string) => {
+  const padding = new Buffer('\x0Aaccount-id')
+
+  const principal = Principal.fromText(principalId).toUint8Array()
+
+  const array = new Uint8Array([...padding, ...principal, ...getSubAccountArray(0)])
+  const hash = sha224(array)
+  const checksum = to32bits(getCrc32(hash))
+  const array2 = new Uint8Array([...checksum, ...hash])
+  return toHexString(array2)
+}
+
+const getSubAccountArray = (s: number) => {
+  return Array(28)
+    .fill(0)
+    .concat(to32bits(s ? s : 0))
 }
 
 export const tokenIdentifier = (principal: string, index: number) => {
