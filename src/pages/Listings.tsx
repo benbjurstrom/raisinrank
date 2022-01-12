@@ -17,8 +17,10 @@ import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { updateListings } from '../utils/updateListings'
 
+const featuredAddress = '5sxqr-iv2ti-d4ouq-js3al-ahkwd-v33kq-jnaql-nwryx-25axg-dajho-mae'
 export default function Listings() {
   const [featuredListing, setFeaturedListing] = useState<Listing | undefined>()
+  const [featuredListingLoaded, setFeaturedListingLoaded] = useState(false)
   const [loadingListings, setLoadingListings] = React.useState(false)
 
   const { themeStretch } = useSettings()
@@ -33,7 +35,18 @@ export default function Listings() {
         const date = parseISO(listing.timestamp)
         return listing.canisterId === canister.id && getTime(date) > anHourAgo
       })
-      .limit(200)
+      .limit(100)
+      .reverse()
+      .toArray()
+  })
+
+  const featuredListings = useLiveQuery(() => {
+    return db.listings
+      .orderBy('timestamp')
+      .filter((listing) => {
+        return listing.canisterId === canister.id && listing.sellerId === featuredAddress
+      })
+      .limit(50)
       .reverse()
       .toArray()
   })
@@ -47,9 +60,13 @@ export default function Listings() {
   })
 
   useEffect(() => {
-    if (!listings) return
-    setFeaturedListing(listings[Math.floor(Math.random() * listings.length)])
-  }, [listings, listings?.length])
+    if (!featuredListings || featuredListings.length < 1) return
+
+    if (!featuredListingLoaded) {
+      setFeaturedListing(featuredListings[Math.floor(Math.random() * featuredListings.length)])
+      setFeaturedListingLoaded(true)
+    }
+  }, [featuredListings])
 
   async function handleLoadListings() {
     setLoadingListings(true)

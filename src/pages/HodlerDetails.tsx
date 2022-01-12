@@ -51,6 +51,26 @@ export default function HodlerDetails() {
       .toArray()
   })
 
+  const transactions = useLiveQuery(() => {
+    return db.transactions
+      .orderBy('soldAt')
+      .filter((transaction) => {
+        return transaction.canisterId === canister.id && transaction.buyerId === account
+      })
+      .reverse()
+      .toArray()
+  })
+
+  const listings = useLiveQuery(() => {
+    return db.listings
+      .orderBy('timestamp')
+      .filter((listing) => {
+        return listing.canisterId === canister.id
+      })
+      .reverse()
+      .toArray()
+  })
+
   if (!hodles) {
     return (
       <Container maxWidth={themeStretch ? false : 'xl'}>
@@ -64,6 +84,18 @@ export default function HodlerDetails() {
       </Container>
     )
   }
+
+  const combined = hodles.map((hodle) => {
+    const transaction = transactions?.find(
+      (t) => t.tokenIndex === hodle.tokenIndex && t.buyerId === account
+    )
+    const listing = listings?.find((l) => l.tokenIndex === hodle.tokenIndex)
+    return {
+      ...hodle,
+      transaction,
+      listing
+    }
+  })
 
   return (
     <Page title={`${canister.name} - Wallet Collection | RaisinRank.com`}>
@@ -108,7 +140,7 @@ export default function HodlerDetails() {
           </Grid>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 2 }}>
-          {hodles.map((hodle) => (
+          {combined.map((hodle) => (
             <Grid key={hodle.id} item xs={12} sm={6} md={3} xl={2}>
               <HodleCard hodle={hodle} />
             </Grid>

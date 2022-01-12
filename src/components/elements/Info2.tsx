@@ -22,8 +22,8 @@ type Props = {
 
 const Info2 = ({ data, description, tooltip }: Props): JSX.Element => {
   let display = data.toString()
-  if (data === 200) {
-    display = '200+'
+  if (data === 100) {
+    display = '100+'
   }
 
   return (

@@ -1,6 +1,6 @@
 // material
 import StarsIcon from '@mui/icons-material/Stars'
-import { Box, Card, Stack, Typography } from '@mui/material'
+import { Box, Card, Stack, Tooltip, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { Listing } from '../db'
@@ -67,7 +67,13 @@ export default function ListingCard({ listing, featured, canister }: ListingCard
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           {featured ? (
-            <StarsIcon />
+            <Tooltip
+              title={
+                'The featured listing card shows a random marketplace listing from a specified wallet address. To have your listings featured for a small fee contact @nullraisins.'
+              }
+            >
+              <StarsIcon />
+            </Tooltip>
           ) : (
             <Blockie
               canister={canister}
