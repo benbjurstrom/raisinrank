@@ -60,13 +60,11 @@ export default function Listings() {
   })
 
   useEffect(() => {
-    if (!featuredListings || featuredListings.length < 1) return
+    if (!featuredListings || featuredListings.length < 1 || featuredListingLoaded) return
 
-    if (!featuredListingLoaded) {
-      setFeaturedListing(featuredListings[Math.floor(Math.random() * featuredListings.length)])
-      setFeaturedListingLoaded(true)
-    }
-  }, [featuredListings])
+    setFeaturedListing(featuredListings[Math.floor(Math.random() * featuredListings.length)])
+    setFeaturedListingLoaded(true)
+  }, [featuredListings, featuredListingLoaded])
 
   async function handleLoadListings() {
     setLoadingListings(true)
