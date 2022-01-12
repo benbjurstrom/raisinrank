@@ -26,9 +26,6 @@ export default function HodlePetTypes({ hodles }: HodlePetTypesProps) {
         case 2:
           acc[2].y += 1
           break
-        case 3:
-          acc[3].y += 1
-          break
       }
 
       return acc
@@ -44,10 +41,6 @@ export default function HodlePetTypes({ hodles }: HodlePetTypesProps) {
       },
       {
         x: 'Penguin',
-        y: 0
-      },
-      {
-        x: 'No Canister Data',
         y: 0
       }
     ]
