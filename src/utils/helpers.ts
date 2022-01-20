@@ -64,6 +64,14 @@ export const tokenIdentifier = (principal: string, index: number) => {
   return Principal.fromUint8Array(array).toText()
 }
 
+export const getOffsetIndex = (index: number, canisterId: string) => {
+  if (canisterId !== 'jeghr-iaaaa-aaaah-qco7q-cai') {
+    return index + 1
+  }
+
+  return index
+}
+
 export const decodeTokenId = (tid: string) => {
   const p: any = [...Principal.fromText(tid).toUint8Array()]
   const padding = p.splice(0, 4)

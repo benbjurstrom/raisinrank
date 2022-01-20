@@ -1,18 +1,10 @@
 // material
 import { Box } from '@mui/material'
-import { styled, useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 
 import { Transaction } from '../db'
+import Image1 from './elements/Image1'
 import Label from './Label'
-
-const ProductImgStyle = styled('img')(({ theme }) => ({
-  top: 0,
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  position: 'absolute',
-  borderRadius: theme.shape.borderRadiusMd
-}))
 
 type TransactionCardProps = {
   transaction: Transaction
@@ -42,9 +34,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
       >
         {transaction.tokenIndex}
       </Label>
-      <ProductImgStyle
-        src={`https://${transaction.canisterId}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${transaction.tokenId}`}
-      />
+      <Image1 tokenId={transaction.tokenId} tokenIndex={transaction.tokenIndex} />
     </Box>
   )
 }

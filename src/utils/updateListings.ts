@@ -1,7 +1,7 @@
 import { db, Listing } from '../db'
 // @ts-ignore
 import { idlFactory } from '../dids/ape.did.js'
-import { callCanister, getActor, tokenIdentifier } from './helpers'
+import { callCanister, getActor, getOffsetIndex, tokenIdentifier } from './helpers'
 
 export const updateListings = async (canisterId: string): Promise<void> => {
   const actor = getActor(idlFactory, canisterId)
@@ -53,7 +53,7 @@ function transformListingResponse(response: any, canisterId: string): Listing[] 
     return {
       canisterId,
       tokenId: tokenIdentifier(canisterId, record[0]),
-      tokenIndex: record[0] + 1,
+      tokenIndex: getOffsetIndex(record[0], canisterId),
       sellerId: record[1].seller.toString(),
       price: record[1].price.toString(),
       historicPrice: null,

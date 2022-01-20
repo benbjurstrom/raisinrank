@@ -1,22 +1,10 @@
 // material
 import { Box, Card } from '@mui/material'
-import { styled } from '@mui/material/styles'
 
 import { Hodle, Listing, Transaction } from '../db'
 import { getIcpTwoDecimals } from '../utils/helpers'
+import Image1 from './elements/Image1'
 import Label from './Label'
-
-// ----------------------------------------------------------------------
-
-const ProductImgStyle = styled('img')(() => ({
-  top: 0,
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  position: 'absolute'
-}))
-
-// ----------------------------------------------------------------------
 
 interface HodleDetails extends Hodle {
   transaction?: Transaction
@@ -78,10 +66,7 @@ export default function HodleCard({ hodle }: HodleCardProps) {
         >
           {hodle.tokenIndex}
         </Label>
-        <ProductImgStyle
-          alt={hodle.tokenId}
-          src={`https://${hodle.canisterId}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${hodle.tokenId}`}
-        />
+        <Image1 tokenIndex={hodle.tokenIndex} tokenId={hodle.tokenId} />
       </Box>
     </Card>
   )

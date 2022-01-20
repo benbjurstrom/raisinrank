@@ -1,27 +1,15 @@
 // material
 import StarsIcon from '@mui/icons-material/Stars'
 import { Box, Card, Stack, Tooltip, Typography } from '@mui/material'
-import { styled } from '@mui/material/styles'
 
 import { Listing } from '../db'
 import { Canister } from '../utils/canisterResolver'
 import { getAccountFromPrincipal } from '../utils/helpers'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
+import Image1 from './elements/Image1'
 import Price1 from './elements/Price1'
 import Label from './Label'
-
-// ----------------------------------------------------------------------
-
-const ProductImgStyle = styled('img')(() => ({
-  top: 0,
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  position: 'absolute'
-}))
-
-// ----------------------------------------------------------------------
 
 type ListingCardProps = {
   listing: Listing
@@ -54,10 +42,7 @@ export default function ListingCard({ listing, featured, canister }: ListingCard
         >
           {listing.tokenIndex}
         </Label>
-        <ProductImgStyle
-          alt={listing.tokenId}
-          src={`https://${listing.canisterId}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${listing.tokenId}`}
-        />
+        <Image1 tokenIndex={listing.tokenIndex} tokenId={listing.tokenId} />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }} justifyContent="space-between">

@@ -6,7 +6,8 @@ import {
   decodeTokenId,
   getAccountFromPrincipal,
   getActor,
-  getDateFromNano
+  getDateFromNano,
+  getOffsetIndex
 } from './helpers'
 
 export const updateTransactions = async (canisterId: string): Promise<void> => {
@@ -45,7 +46,7 @@ function transformTransactionResponse(response: any, canisterId: string): Transa
     return {
       canisterId,
       tokenId: record.token,
-      tokenIndex: decodeTokenId(record.token).index + 1,
+      tokenIndex: getOffsetIndex(decodeTokenId(record.token).index, canisterId),
       price: record.price.toString(),
       buyerId: record.buyer.toString(),
       sellerId: getAccountFromPrincipal(record.seller.toString()),

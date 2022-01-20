@@ -17,7 +17,6 @@ import useSettings from '../hooks/useSettings'
 import { getCanisterFromSlug } from '../utils/canisterResolver'
 import { updateListings } from '../utils/updateListings'
 
-const featuredAddress = '5sxqr-iv2ti-d4ouq-js3al-ahkwd-v33kq-jnaql-nwryx-25axg-dajho-mae'
 export default function Listings() {
   const [featuredListing, setFeaturedListing] = useState<Listing | undefined>()
   const [featuredListingLoaded, setFeaturedListingLoaded] = useState(false)
@@ -26,6 +25,11 @@ export default function Listings() {
   const { themeStretch } = useSettings()
   const { collection } = useParams()
   const canister = getCanisterFromSlug(collection)
+
+  const featuredAddress =
+    canister.slug === 'icturtles'
+      ? 'hjvln-qnfwp-v5pc4-dvjdu-zkobb-q2utz-fy5yn-jxlfx-7gpdw-ggegz-nae'
+      : '5sxqr-iv2ti-d4ouq-js3al-ahkwd-v33kq-jnaql-nwryx-25axg-dajho-mae'
 
   const listings = useLiveQuery(() => {
     return db.listings

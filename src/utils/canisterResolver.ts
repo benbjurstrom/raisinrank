@@ -10,7 +10,7 @@ export const Canisters: Canister[] = [
     id: 'oeee4-qaaaa-aaaak-qaaeq-cai',
     name: 'Motoko Day Drop',
     slug: 'motoko',
-    thumbnail: 'https://i.imgur.com/7lNaRq6.png'
+    thumbnail: 'https://i.imgur.com/nXliJJb.png'
   },
   {
     id: 'zvycl-fyaaa-aaaah-qckmq-cai',
@@ -36,7 +36,13 @@ export const Canisters: Canister[] = [
     name: 'ICircle',
     slug: 'icircle',
     thumbnail:
-      'https://z7mqv-liaaa-aaaah-qcnqa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=fgrx7-oakor-uwiaa-aaaaa-b4atm-aaqca-aaaag-q'
+      'https://z7mqv-liaaa-aaaah-qcnqa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=y4zxu-aikor-uwiaa-aaaaa-b4atm-aaqca-aaa6w-a'
+  },
+  {
+    id: 'jeghr-iaaaa-aaaah-qco7q-cai', // wrapped
+    name: 'ICTurtles (Wrapped)',
+    slug: 'icturtles',
+    thumbnail: 'https://i.imgur.com/EHOuetl.png'
   },
   {
     id: 'njgly-uaaaa-aaaah-qb6pa-cai',
@@ -64,6 +70,20 @@ export const Canisters: Canister[] = [
     name: 'Cronic Critters',
     slug: 'cronics',
     thumbnail: 'https://i.imgur.com/bkJSAbx.png'
+  },
+  {
+    id: 'nbg4r-saaaa-aaaah-qap7a-cai',
+    name: 'Starverse',
+    slug: 'starverse',
+    thumbnail:
+      'https://nbg4r-saaaa-aaaah-qap7a-cai.raw.ic0.app/?tokenid=er6r4-hakor-uwiaa-aaaaa-b4ad7-yaqca-aaciz-a'
+  },
+  {
+    id: 'txr2a-fqaaa-aaaah-qcmkq-cai',
+    name: 'Meme Cake',
+    slug: 'memecake',
+    thumbnail:
+      'https://txr2a-fqaaa-aaaah-qcmkq-cai.raw.ic0.app/?tokenid=2mm2g-jqkor-uwiaa-aaaaa-b4atc-uaqca-aaajg-q'
   }
 ]
 

@@ -1,7 +1,7 @@
 import { db, Hodle } from '../db'
 // @ts-ignore
 import { idlFactory } from '../dids/ape.did.js'
-import { callCanister, getActor, tokenIdentifier } from './helpers'
+import { callCanister, getActor, getOffsetIndex, tokenIdentifier } from './helpers'
 
 export interface HodleCollection {
   ownerId: string
@@ -60,7 +60,7 @@ function transformHodleResponse(response: any, canisterId: string): Hodle[] {
     return {
       canisterId,
       tokenId: tokenIdentifier(canisterId, record[0]),
-      tokenIndex: record[0] + 1,
+      tokenIndex: getOffsetIndex(record[0], canisterId),
       ownerId: record[1],
       timestamp: new Date().toISOString()
     }
