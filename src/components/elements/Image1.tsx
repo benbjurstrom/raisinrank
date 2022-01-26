@@ -23,6 +23,14 @@ const ProductImgStyle = styled('img')(() => ({
 }))
 
 const ProductEmbedStyle = styled('embed')(() => ({
+  top: 0,
+  width: '100%',
+  height: '100%',
+  objectFit: 'fill',
+  position: 'absolute'
+}))
+
+const TurtleEmbedStyle = styled('embed')(() => ({
   top: '-16px',
   width: '100%',
   height: '100%',
@@ -38,8 +46,16 @@ const Image1 = ({ tokenIndex, tokenId, sx }: Props): JSX.Element => {
 
   if (canister.slug === 'icturtles') {
     return (
+      <TurtleEmbedStyle src={'https://fl5nr-xiaaa-aaaai-qbjmq-cai.raw.ic0.app/nft/' + tokenIndex} />
+    )
+  }
+
+  if (canister.slug === 'btcflower') {
+    return (
       <ProductEmbedStyle
-        src={'https://fl5nr-xiaaa-aaaai-qbjmq-cai.raw.ic0.app/nft/' + tokenIndex}
+        src={
+          'https://pk6rk-6aaaa-aaaae-qaazq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=' + tokenId
+        }
       />
     )
   }

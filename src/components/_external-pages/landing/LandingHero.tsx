@@ -1,3 +1,4 @@
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
 import { Box, Container, Grid, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
@@ -61,7 +62,11 @@ const HeroImgStyle = styled(motion.img)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LandingHero() {
-  const canisterChunks = Canisters.reduce<any[]>((all, one, i) => {
+  const featuredCanisters = Canisters.filter((canister) => {
+    return canister.featured === true
+  })
+
+  const canisterChunks = featuredCanisters.reduce<any[]>((all, one, i) => {
     const ch = Math.floor(i / 3)
     //@ts-ignore
     all[ch] = [].concat(all[ch] || [], one)
@@ -98,6 +103,12 @@ export default function LandingHero() {
                   </Grid>
                 </motion.div>
               ))}
+            </Stack>
+            <Stack direction="column" alignItems="center">
+              <Typography variant="subtitle1" sx={{ color: 'primary.main' }}>
+                more
+              </Typography>
+              <KeyboardDoubleArrowDownIcon color={'primary'} />
             </Stack>
           </ContentStyle>
         </Container>
