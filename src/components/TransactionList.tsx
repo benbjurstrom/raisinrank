@@ -1,4 +1,12 @@
-import { DataGrid, GridColDef, GridRenderCellParams, GridToolbar } from '@mui/x-data-grid'
+import { Box, Tooltip } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import {
+  DataGrid,
+  GridColDef,
+  GridOverlay,
+  GridRenderCellParams,
+  GridToolbar
+} from '@mui/x-data-grid'
 import { parseISO } from 'date-fns'
 import React from 'react'
 
@@ -12,9 +20,28 @@ import TransactionCard from './TransactionCard'
 type TransactionListProps = {
   transactions: Transaction[]
   canister: Canister
+  hideImage?: boolean
+  height?: number
 }
 
-export default function TransactionList({ transactions, canister }: TransactionListProps) {
+const StyledGridOverlay = styled(GridOverlay)(({ theme }) => ({
+  flexDirection: 'column'
+}))
+
+function CustomNoRowsOverlay() {
+  return (
+    <StyledGridOverlay>
+      <Box sx={{ mt: 1 }}>No Transactions</Box>
+    </StyledGridOverlay>
+  )
+}
+
+export default function TransactionList({
+  transactions,
+  canister,
+  hideImage = false,
+  height = 900
+}: TransactionListProps) {
   const columns: GridColDef[] = [
     {
       field: 'tokenIndex',
@@ -22,9 +49,12 @@ export default function TransactionList({ transactions, canister }: TransactionL
       width: 150,
       renderCell: (params: GridRenderCellParams<Transaction>) => {
         return <TransactionCard transaction={params.row} />
-      }
+      },
+      hide: hideImage
     },
     {
+      align: 'left',
+      headerAlign: 'left',
       field: 'price',
       headerName: 'Price',
       type: 'number',
@@ -35,7 +65,9 @@ export default function TransactionList({ transactions, canister }: TransactionL
       type: 'dateTime',
       headerName: 'Sold',
       renderCell: (params: GridRenderCellParams<Transaction>) => (
-        <DateTime2 dateString={params.row.soldAt} />
+        <Tooltip title={params.row.soldAt}>
+          <DateTime2 dateString={params.row.soldAt} />
+        </Tooltip>
       )
     },
     {
@@ -63,7 +95,7 @@ export default function TransactionList({ transactions, canister }: TransactionL
   })
 
   return (
-    <div style={{ height: 900, width: '100%' }}>
+    <div style={{ height: height, width: '100%' }}>
       <DataGrid
         rowHeight={150}
         rows={list}
@@ -71,7 +103,8 @@ export default function TransactionList({ transactions, canister }: TransactionL
         disableColumnSelector={true}
         disableDensitySelector={true}
         components={{
-          Toolbar: GridToolbar
+          Toolbar: GridToolbar,
+          NoRowsOverlay: CustomNoRowsOverlay
         }}
         // filterModel={{
         //   items: [

@@ -7,6 +7,8 @@ import LoadingScreen from '../components/LoadingScreen'
 import DashboardLayout from '../layouts/dashboard'
 import LogoOnlyLayout from '../layouts/LogoOnlyLayout'
 import MainLayout from '../layouts/main'
+import Roadmap from '../pages/Roadmap'
+import TokenDetails from '../pages/TokenDetails'
 // components
 // ----------------------------------------------------------------------
 
@@ -55,11 +57,17 @@ export default function Router() {
         { path: 'listings', element: <Listings /> },
         { path: 'transactions', element: <Transactions /> },
         { path: 'hodlers', element: <Hodlers /> },
-        { path: 'hodlers/:account', element: <HodlerDetails /> }
+        { path: 'hodlers/:account', element: <HodlerDetails /> },
+        { path: 'tokens/:tokenIndex', element: <TokenDetails /> }
       ]
     },
 
     // Main Routes
+    {
+      path: '/roadmap',
+      element: <MainLayout />,
+      children: [{ path: '/roadmap', element: <Roadmap /> }]
+    },
     {
       path: '*',
       element: <LogoOnlyLayout />,
