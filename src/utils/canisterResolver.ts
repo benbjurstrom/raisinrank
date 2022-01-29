@@ -127,7 +127,33 @@ export const Canisters: Canister[] = [
       'https://gyuaf-kqaaa-aaaah-qceka-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=r3bxl-bykor-uwiaa-aaaaa-b4arc-qaqca-aaaal-q',
     featured: false,
     dgdg: 'vampires'
+  },
+  {
+    id: 'erpx2-pyaaa-aaaah-qcqsq-cai',
+    name: 'Voxel Assassins!!!',
+    slug: 'frogvoxel',
+    thumbnail:
+      'https://erpx2-pyaaa-aaaah-qcqsq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=373wy-5qkor-uwiaa-aaaaa-b4aue-uaqca-aaaep-q',
+    featured: false
+    // dgdg: false,
+  },
+  {
+    id: 'jmuqr-yqaaa-aaaaj-qaicq-cai',
+    name: 'ICP Squad',
+    slug: 'icpsquad',
+    thumbnail:
+      'https://jmuqr-yqaaa-aaaaj-qaicq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=qmwri-sikor-uwiaa-aaaaa-cmaca-uaqca-aaauf-q',
+    featured: false
+    // dgdg: false,
   }
+  // {
+  //   id: 'f2yud-3iaaa-aaaaf-qaehq-cai',
+  //   name: 'ICPBunny',
+  //   slug: 'icpbunny',
+  //   thumbnail: 'https://efqhu-yqaaa-aaaaf-qaeda-cai.raw.ic0.app/Token/0',
+  //   featured: false
+  //   // dgdg: false,
+  // },
 ]
 
 export const getCanisterFromSlug = (slug?: string): Canister => {
