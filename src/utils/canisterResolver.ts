@@ -67,6 +67,33 @@ export const Canisters: Canister[] = [
     dgdg: 'turtles'
   },
   {
+    id: 'erpx2-pyaaa-aaaah-qcqsq-cai',
+    name: 'Voxel Assassins!!!',
+    slug: 'frogvoxel',
+    thumbnail:
+      'https://erpx2-pyaaa-aaaah-qcqsq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=373wy-5qkor-uwiaa-aaaaa-b4aue-uaqca-aaaep-q',
+    featured: false,
+    dgdg: 'voxels'
+  },
+  {
+    id: 'bkvll-jiaaa-aaaah-qcqnq-cai',
+    name: '2D Assassins!!!',
+    slug: 'frog2d',
+    thumbnail:
+      'https://bkvll-jiaaa-aaaah-qcqnq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=xorlj-uakor-uwiaa-aaaaa-b4aud-maqca-aaahn-q',
+    featured: false,
+    dgdg: 'fn2ds'
+  },
+  {
+    id: 'jmuqr-yqaaa-aaaaj-qaicq-cai',
+    name: 'ICP Squad',
+    slug: 'icpsquad',
+    thumbnail:
+      'https://jmuqr-yqaaa-aaaaj-qaicq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=qmwri-sikor-uwiaa-aaaaa-cmaca-uaqca-aaauf-q',
+    featured: false
+    // dgdg: false,
+  },
+  {
     id: 'njgly-uaaaa-aaaah-qb6pa-cai',
     name: 'ICPuppies',
     slug: 'icpuppies',
@@ -127,24 +154,6 @@ export const Canisters: Canister[] = [
       'https://gyuaf-kqaaa-aaaah-qceka-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=r3bxl-bykor-uwiaa-aaaaa-b4arc-qaqca-aaaal-q',
     featured: false,
     dgdg: 'vampires'
-  },
-  {
-    id: 'erpx2-pyaaa-aaaah-qcqsq-cai',
-    name: 'Voxel Assassins!!!',
-    slug: 'frogvoxel',
-    thumbnail:
-      'https://erpx2-pyaaa-aaaah-qcqsq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=373wy-5qkor-uwiaa-aaaaa-b4aue-uaqca-aaaep-q',
-    featured: false
-    // dgdg: false,
-  },
-  {
-    id: 'jmuqr-yqaaa-aaaaj-qaicq-cai',
-    name: 'ICP Squad',
-    slug: 'icpsquad',
-    thumbnail:
-      'https://jmuqr-yqaaa-aaaaj-qaicq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=qmwri-sikor-uwiaa-aaaaa-cmaca-uaqca-aaauf-q',
-    featured: false
-    // dgdg: false,
   }
   // {
   //   id: 'f2yud-3iaaa-aaaaf-qaehq-cai',
