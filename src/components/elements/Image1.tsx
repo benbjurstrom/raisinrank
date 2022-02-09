@@ -1,4 +1,4 @@
-import { Theme } from '@mui/material'
+import { Link, Theme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { SxProps } from '@mui/system'
 import React from 'react'
@@ -18,15 +18,6 @@ const ProductImgStyle = styled('img')(() => ({
   top: 0,
   width: '100%',
   height: '100%',
-  objectFit: 'cover',
-  position: 'absolute'
-}))
-
-const ProductEmbedStyle = styled('embed')(() => ({
-  top: 0,
-  width: '100%',
-  height: '100%',
-  objectFit: 'fill',
   position: 'absolute'
 }))
 
@@ -52,19 +43,32 @@ const Image1 = ({ tokenIndex, tokenId, sx }: Props): JSX.Element => {
 
   if (canister.slug === 'btcflower') {
     return (
-      <ProductEmbedStyle
-        src={
-          'https://pk6rk-6aaaa-aaaae-qaazq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=' + tokenId
-        }
-      />
+      <Link
+        component={'a'}
+        target="_blank"
+        rel="noreferrer"
+        href={`https://entrepot.app/marketplace/asset/${tokenId}`}
+      >
+        <ProductImgStyle
+          alt={tokenId}
+          src={`https://7budn-wqaaa-aaaah-qcsba-cai.raw.ic0.app/?tokenid=${tokenId}`}
+        />
+      </Link>
     )
   }
 
   return (
-    <ProductImgStyle
-      alt={tokenId}
-      src={`https://${canister.id}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${tokenId}`}
-    />
+    <Link
+      component={'a'}
+      target="_blank"
+      rel="noreferrer"
+      href={`https://entrepot.app/marketplace/asset/${tokenId}`}
+    >
+      <ProductImgStyle
+        alt={tokenId}
+        src={`https://${canister.id}.raw.ic0.app/?cc=0&type=thumbnail&tokenid=${tokenId}`}
+      />
+    </Link>
   )
 }
 
