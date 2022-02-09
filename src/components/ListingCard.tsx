@@ -5,6 +5,7 @@ import { Box, Card, Stack, Tooltip, Typography } from '@mui/material'
 import { Listing } from '../db'
 import { Canister } from '../utils/canisterResolver'
 import { getAccountFromPrincipal } from '../utils/helpers'
+import getNri from '../utils/helpers'
 import Blockie from './elements/Blockie'
 import DateTime2 from './elements/DateTime2'
 import Image1 from './elements/Image1'
@@ -26,12 +27,14 @@ export default function ListingCard({ listing, featured, canister }: ListingCard
     }
   }
 
+  const nri = getNri(canister.id, listing.tokenIndex - 1)
+
   return (
     <Card sx={{ height: '100%', ...featuredStyle }}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         <Label
           variant="filled"
-          color={'info'}
+          color={'primary'}
           sx={{
             top: 16,
             right: 16,
@@ -42,6 +45,23 @@ export default function ListingCard({ listing, featured, canister }: ListingCard
         >
           {listing.tokenIndex}
         </Label>
+        {nri ? (
+          <Label
+            variant="filled"
+            color={'primary'}
+            sx={{
+              top: 16,
+              left: 16,
+              zIndex: 9,
+              position: 'absolute',
+              textTransform: 'uppercase'
+            }}
+          >
+            {nri}
+          </Label>
+        ) : (
+          ''
+        )}
         <Image1 tokenIndex={listing.tokenIndex} tokenId={listing.tokenId} />
       </Box>
 

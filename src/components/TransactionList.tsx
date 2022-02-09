@@ -66,7 +66,9 @@ export default function TransactionList({
       headerName: 'Sold',
       renderCell: (params: GridRenderCellParams<Transaction>) => (
         <Tooltip title={params.row.soldAt}>
-          <DateTime2 dateString={params.row.soldAt} />
+          <div>
+            <DateTime2 dateString={params.row.soldAt} />
+          </div>
         </Tooltip>
       )
     },

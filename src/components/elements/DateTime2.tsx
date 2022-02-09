@@ -26,25 +26,25 @@ const formatDistanceLocale = {
   almostXYears: '{{count}}y'
 }
 
+function formatDistance(token: string, count: string, options: any) {
+  options = options || {}
+
+  // @ts-ignore
+  const result = formatDistanceLocale[token].replace('{{count}}', count)
+
+  if (options.addSuffix) {
+    if (options.comparison > 0) {
+      return 'in ' + result
+    } else {
+      return result + ' ago'
+    }
+  }
+
+  return result
+}
+
 const DateTime2 = ({ dateString, className }: Props): JSX.Element => {
   const date = parseISO(dateString)
-
-  function formatDistance(token: string, count: string, options: any) {
-    options = options || {}
-
-    // @ts-ignore
-    const result = formatDistanceLocale[token].replace('{{count}}', count)
-
-    if (options.addSuffix) {
-      if (options.comparison > 0) {
-        return 'in ' + result
-      } else {
-        return result + ' ago'
-      }
-    }
-
-    return result
-  }
 
   const timeAgo = formatDistanceToNowStrict(date, {
     addSuffix: true,

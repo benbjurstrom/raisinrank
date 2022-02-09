@@ -46,7 +46,7 @@ export const Canisters: Canister[] = [
     name: 'ICircle',
     slug: 'icircle',
     thumbnail:
-      'https://z7mqv-liaaa-aaaah-qcnqa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=y4zxu-aikor-uwiaa-aaaaa-b4atm-aaqca-aaa6w-a',
+      'https://z7mqv-liaaa-aaaah-qcnqa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=d7lte-7qkor-uwiaa-aaaaa-b4atm-aaqca-aaaey-q',
     featured: true,
     dgdg: 'icircle'
   },
@@ -54,7 +54,7 @@ export const Canisters: Canister[] = [
     id: 'pk6rk-6aaaa-aaaae-qaazq-cai',
     name: 'BTC Flower',
     slug: 'btcflower',
-    thumbnail: 'https://i.imgur.com/Q14lZ1h.png',
+    thumbnail: 'https://i.imgur.com/hbao3VW.png',
     featured: true,
     dgdg: 'flowers'
   },
@@ -142,7 +142,7 @@ export const Canisters: Canister[] = [
     name: 'Meme Cake',
     slug: 'memecake',
     thumbnail:
-      'https://txr2a-fqaaa-aaaah-qcmkq-cai.raw.ic0.app/?tokenid=2mm2g-jqkor-uwiaa-aaaaa-b4atc-uaqca-aaajg-q',
+      'https://txr2a-fqaaa-aaaah-qcmkq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=y3ly6-mykor-uwiaa-aaaaa-b4atc-uaqca-aadzp-q',
     featured: false,
     dgdg: 'memes'
   },

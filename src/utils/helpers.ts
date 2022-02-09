@@ -7,6 +7,8 @@ import { sha224 } from '@dfinity/principal/lib/esm/utils/sha224'
 import { Buffer } from 'buffer'
 import fetch from 'cross-fetch'
 
+import collections from './nri.json'
+
 const agent = new HttpAgent({
   host: 'https://boundary.ic0.app',
   fetch: fetch
@@ -108,4 +110,19 @@ const toHexString = (byteArray: Uint8Array | number[]) => {
   return Array.from(byteArray, function (byte) {
     return ('0' + (byte & 0xff).toString(16)).slice(-2)
   }).join('')
+}
+
+interface NriData {
+  [key: string]: number[]
+}
+
+const nriData: NriData = collections
+
+export default function getNri(canister: string, index: number) {
+  if (typeof nriData[canister] !== 'undefined') {
+    const value = nriData[canister][index]
+    return (value * 100).toFixed(1) + '%'
+  }
+
+  return false
 }
