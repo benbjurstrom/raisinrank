@@ -59,6 +59,23 @@ export const Canisters: Canister[] = [
     dgdg: 'flowers'
   },
   {
+    id: 'er7d4-6iaaa-aaaaj-qac2q-cai',
+    name: 'MoonWalkers',
+    slug: 'moonwalkers',
+    thumbnail: 'https://fyhye-eaaaa-aaaaj-qafaq-cai.raw.ic0.app/?index=66',
+    featured: false
+    // dgdg: false
+  },
+  {
+    id: 'bzsui-sqaaa-aaaah-qce2a-cai',
+    name: 'Poked bots',
+    slug: 'poked',
+    thumbnail:
+      'https://bzsui-sqaaa-aaaah-qce2a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=5xgg5-uykor-uwiaa-aaaaa-b4arg-qaqca-aabah-a',
+    featured: false,
+    dgdg: 'bots'
+  },
+  {
     id: 'jeghr-iaaaa-aaaah-qco7q-cai', // wrapped
     name: 'ICTurtles (Wrapped)',
     slug: 'icturtles',
@@ -110,15 +127,6 @@ export const Canisters: Canister[] = [
       'https://v3zkd-syaaa-aaaah-qcm5a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=sppfz-fqkor-uwiaa-aaaaa-b4ath-iaqca-aaabu-a',
     featured: false,
     dgdg: 'kitties'
-  },
-  {
-    id: 'bzsui-sqaaa-aaaah-qce2a-cai',
-    name: 'Poked bots',
-    slug: 'poked',
-    thumbnail:
-      'https://bzsui-sqaaa-aaaah-qce2a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=5xgg5-uykor-uwiaa-aaaaa-b4arg-qaqca-aabah-a',
-    featured: false,
-    dgdg: 'bots'
   },
   {
     id: 'e3izy-jiaaa-aaaah-qacbq-cai',
