@@ -155,6 +155,24 @@ export const Canisters: Canister[] = [
     dgdg: 'memes'
   },
   {
+    id: 'sr4qi-vaaaa-aaaah-qcaaq-cai',
+    name: 'Internet Astronauts',
+    slug: 'interastrosc',
+    thumbnail:
+      'https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/?tokenid=tpvvt-eqkor-uwiaa-aaaaa-b4aqa-eaqca-aaath-q',
+    featured: false,
+    dgdg: 'astros'
+  },
+  {
+    id: 'gevsk-tqaaa-aaaah-qaoca-cai',
+    name: 'ICmojis',
+    slug: 'icmojis',
+    thumbnail:
+      'https://gevsk-tqaaa-aaaah-qaoca-cai.raw.ic0.app/?tokenid=kl4f7-uykor-uwiaa-aaaaa-b4adq-qaqca-aaaco-q',
+    featured: false,
+    dgdg: 'icmojis'
+  },
+  {
     id: 'gyuaf-kqaaa-aaaah-qceka-cai',
     name: 'Infernal Vampire Colony',
     slug: 'ivc',
