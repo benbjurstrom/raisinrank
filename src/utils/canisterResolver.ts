@@ -159,7 +159,7 @@ export const Canisters: Canister[] = [
     name: 'Internet Astronauts',
     slug: 'interastrosc',
     thumbnail:
-      'https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/?tokenid=tpvvt-eqkor-uwiaa-aaaaa-b4aqa-eaqca-aaath-q',
+      'https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=tpvvt-eqkor-uwiaa-aaaaa-b4aqa-eaqca-aaath-q',
     featured: false,
     dgdg: 'astros'
   },
