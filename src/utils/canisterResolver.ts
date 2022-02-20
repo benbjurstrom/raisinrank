@@ -67,6 +67,15 @@ export const Canisters: Canister[] = [
     // dgdg: false
   },
   {
+    id: 'rw623-hyaaa-aaaah-qctcq-cai',
+    name: 'OG MEDALS',
+    slug: 'ogmedals',
+    thumbnail:
+      'https://rw623-hyaaa-aaaah-qctcq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=lud5f-tikor-uwiaa-aaaaa-b4auy-uaqca-aaapt-q',
+    featured: false,
+    dgdg: 'ogs'
+  },
+  {
     id: 'bzsui-sqaaa-aaaah-qce2a-cai',
     name: 'Poked bots',
     slug: 'poked',
