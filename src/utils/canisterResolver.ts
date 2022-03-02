@@ -93,15 +93,6 @@ export const Canisters: Canister[] = [
     dgdg: 'turtles'
   },
   {
-    id: 'erpx2-pyaaa-aaaah-qcqsq-cai',
-    name: 'Voxel Assassins!!!',
-    slug: 'frogvoxel',
-    thumbnail:
-      'https://erpx2-pyaaa-aaaah-qcqsq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=373wy-5qkor-uwiaa-aaaaa-b4aue-uaqca-aaaep-q',
-    featured: false,
-    dgdg: 'voxels'
-  },
-  {
     id: 'bkvll-jiaaa-aaaah-qcqnq-cai',
     name: '2D Assassins!!!',
     slug: 'frog2d',
@@ -109,6 +100,24 @@ export const Canisters: Canister[] = [
       'https://bkvll-jiaaa-aaaah-qcqnq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=xorlj-uakor-uwiaa-aaaaa-b4aud-maqca-aaahn-q',
     featured: false,
     dgdg: 'fn2ds'
+  },
+  {
+    id: '2l7rh-eiaaa-aaaah-qcvaa-cai',
+    name: 'Vibesters',
+    slug: 'vibesters',
+    thumbnail:
+      'https://2l7rh-eiaaa-aaaah-qcvaa-cai.raw.ic0.app/?tokenid=esr57-6qkor-uwiaa-aaaaa-b4avi-aaqca-aabsq-a',
+    featured: false,
+    dgdg: 'vibesters'
+  },
+  {
+    id: 'erpx2-pyaaa-aaaah-qcqsq-cai',
+    name: 'Voxel Assassins!!!',
+    slug: 'frogvoxel',
+    thumbnail:
+      'https://erpx2-pyaaa-aaaah-qcqsq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=373wy-5qkor-uwiaa-aaaaa-b4aue-uaqca-aaaep-q',
+    featured: false,
+    dgdg: 'voxels'
   },
   {
     id: 'jmuqr-yqaaa-aaaaj-qaicq-cai',
