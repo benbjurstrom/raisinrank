@@ -85,6 +85,24 @@ export const Canisters: Canister[] = [
     dgdg: 'bots'
   },
   {
+    id: 'j3dqa-byaaa-aaaah-qcwfa-cai',
+    name: 'ICPCS',
+    slug: 'icpcs',
+    thumbnail:
+      'https://images.entrepot.app/t/j3dqa-byaaa-aaaah-qcwfa-cai/d25uu-gikor-uwiaa-aaaaa-b4avr-iaqca-aadr3-q',
+    featured: false,
+    dgdg: 'icpcs'
+  },
+  {
+    id: 'yrdz3-2yaaa-aaaah-qcvpa-cai',
+    name: 'IC Dinos',
+    slug: 'icdinos',
+    thumbnail:
+      'https://images.entrepot.app/t/yrdz3-2yaaa-aaaah-qcvpa-cai/uiya3-5ikor-uwiaa-aaaaa-b4avl-yaqca-aaau7-q',
+    featured: false,
+    dgdg: 'dinos'
+  },
+  {
     id: 'jeghr-iaaaa-aaaah-qco7q-cai', // wrapped
     name: 'ICTurtles (Wrapped)',
     slug: 'icturtles',
