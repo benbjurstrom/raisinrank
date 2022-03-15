@@ -38,7 +38,7 @@ export const Canisters: Canister[] = [
     name: 'ICPets',
     slug: 'icpets',
     thumbnail: 'https://imgur.com/jqYNvsk.png',
-    featured: true,
+    featured: false,
     dgdg: 'pets'
   },
   {
@@ -109,6 +109,15 @@ export const Canisters: Canister[] = [
     thumbnail: 'https://i.imgur.com/3ig1Rx3.png',
     featured: false,
     dgdg: 'turtles'
+  },
+  {
+    id: 'gtb2b-tiaaa-aaaah-qcxca-cai',
+    name: 'D-City',
+    slug: 'dcity',
+    thumbnail:
+      'https://images.entrepot.app/t/gtb2b-tiaaa-aaaah-qcxca-cai/6jty7-hikor-uwiaa-aaaaa-b4avy-qaqca-aaa5d-a',
+    featured: true,
+    dgdg: 'dcity'
   },
   {
     id: 'bkvll-jiaaa-aaaah-qcqnq-cai',
